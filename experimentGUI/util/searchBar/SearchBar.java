@@ -25,13 +25,11 @@ import org.fife.ui.rtextarea.SearchEngine;
 public class SearchBar extends JToolBar implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
-	public static final String CAPTION_HIDE = "X";
 	public static final String CAPTION_NEXT = "Abwärts";
 	public static final String CAPTION_PREVIOUS = "Aufwärts";
 	public static final String CAPTION_REGEX = "Regex";
 	public static final String CAPTION_MATCH_CASE = "Groß-/Kleinschreibung";
 
-	public static final String ACTION_HIDE = "Hide";
 	public static final String ACTION_NEXT = "FindNext";
 	public static final String ACTION_PREVIOUS = "FindPrevious";
 
@@ -39,7 +37,6 @@ public class SearchBar extends JToolBar implements ActionListener {
 
 	private RSyntaxTextArea textArea;
 
-	private JButton hideButton = new JButton(CAPTION_HIDE);
 	private JTextField searchField = new JTextField(30);
 	private JButton forwardButton = new JButton(CAPTION_NEXT);
 	private JButton backwardButton = new JButton(CAPTION_PREVIOUS);
@@ -66,10 +63,6 @@ public class SearchBar extends JToolBar implements ActionListener {
 	public SearchBar(RSyntaxTextArea textArea) {
 		this.textArea=textArea;
 		this.setFloatable(false);
-		// Create a toolbar with searching options.
-		hideButton.setActionCommand(ACTION_HIDE);
-		hideButton.addActionListener(this);
-		add(hideButton);
 		searchField.addKeyListener(new KeyAdapter() {
 
 			@Override
@@ -92,11 +85,6 @@ public class SearchBar extends JToolBar implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-
-		if (command.equals(ACTION_HIDE)) {
-			setVisible(false);
-			return;
-		}
 
 		String text = searchField.getText();
 		if (text.length() == 0) {
@@ -134,10 +122,6 @@ public class SearchBar extends JToolBar implements ActionListener {
 
 	public RSyntaxTextArea getTextArea() {
 		return textArea;
-	}
-
-	public JButton getHideButton() {
-		return hideButton;
 	}
 
 	public JTextField getSearchField() {

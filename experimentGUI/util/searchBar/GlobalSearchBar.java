@@ -36,17 +36,12 @@ import experimentGUI.plugins.codeViewerPlugin.fileTree.FileTreeNode;
 
 public class GlobalSearchBar extends JToolBar implements ActionListener {
 	private static final long serialVersionUID = 1L;
-
-	public static final String CAPTION_HIDE = "X";
 	public static final String CAPTION_FIND = "Find";
 	public static final String CAPTION_REGEX = "Regex";
 	public static final String CAPTION_MATCH_CASE = "Groß-/Kleinschreibung";
-
-	public static final String ACTION_HIDE = "Hide";
 	public static final String ACTION_NEXT = "Global";
 
-	private JButton hideButton = new JButton(CAPTION_HIDE);
-	private JTextField searchField = new JTextField(30);
+    private JTextField searchField = new JTextField(30);
 	private JButton forwardButton = new JButton(CAPTION_FIND);
 	private JCheckBox regexCB = new JCheckBox(CAPTION_REGEX);
 	private JCheckBox matchCaseCB = new JCheckBox(CAPTION_MATCH_CASE);
@@ -78,10 +73,6 @@ public class GlobalSearchBar extends JToolBar implements ActionListener {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
 		JPanel northPanel = new JPanel();
-		// Create a toolbar with searching options.
-		hideButton.setActionCommand(ACTION_HIDE);
-		hideButton.addActionListener(this);
-		add(hideButton);
 		searchField.addKeyListener(new KeyAdapter() {
 
 			@Override
@@ -117,11 +108,6 @@ public class GlobalSearchBar extends JToolBar implements ActionListener {
 	public void actionPerformed(ActionEvent action) {
 		String command = action.getActionCommand();
 
-		if (command.equals(ACTION_HIDE)) {
-			setVisible(false);
-			return;
-		}
-
 		String text = searchField.getText();
 		if (text.length() == 0) {
 			return;
@@ -150,7 +136,6 @@ public class GlobalSearchBar extends JToolBar implements ActionListener {
 			RSyntaxTextArea textArea = new RSyntaxTextArea();
 
 			while(current!=null) {
-//				System.out.println("CURR: "+current.getFilePath());
 				if (current.isFile()) {
 					try {
 						String path = file.getPath()+current.getFilePath();
@@ -161,22 +146,19 @@ public class GlobalSearchBar extends JToolBar implements ActionListener {
 					    textArea.setText(new String(buffer));
 					    textArea.setCaretPosition(0);
 					    boolean found = SearchEngine.find(textArea, text, forward, matchCase, wholeWord, regex);
-//					    System.out.println("-- found: "+found);
+
 					    if (!found) {
 					    	delete=current;
 					    }
 					} catch (Exception e) {
-//						System.out.println("-- exception");
 						delete = current;
 					}
 				} else {
-//					System.out.println("-- no file");
 					delete = current;
 				}
 				current=getNextLeaf(current);
 				while (delete!=null) {
 					FileTreeNode parent = (FileTreeNode)delete.getParent();
-//					System.out.println("-- DEL: "+delete.getFilePath());
 					delete.removeFromParent();
 					if (parent!=null && parent.getChildCount()==0) {
 						delete=parent;
@@ -192,10 +174,6 @@ public class GlobalSearchBar extends JToolBar implements ActionListener {
 		for (SearchBarListener l : listeners) {
 			l.searched(command, text, root.getChildCount()>0);
 		}
-	}
-
-	public JButton getHideButton() {
-		return hideButton;
 	}
 
 	public JTextField getSearchField() {

@@ -78,7 +78,7 @@ public class SearchBarPlugin implements CodeViewerPluginInterface {
 			boolean activateGlobal = Boolean.parseBoolean(selected.getAttribute(KEY).getAttributeValue(KEY_ENABLE_GLOBAL));
 			if (activateGlobal) {
 				globalSearchBar = new GlobalSearchBar(viewer.getShowDir(), v);
-				globalSearchBar.setVisible(false);
+				globalSearchBar.setVisible(true);
 
 				globalSearchBar.addSearchBarListener(new SearchBarListener() {
 
@@ -127,7 +127,7 @@ public class SearchBarPlugin implements CodeViewerPluginInterface {
 		if (enabled) {
 			RSyntaxTextArea textPane = editorPanel.getTextArea();
 			SearchBar searchBar = new SearchBar(textPane);
-			searchBar.setVisible(false);
+			searchBar.setVisible(true);
 			searchBar.addSearchBarListener(new SearchBarListener() {
 
 				@Override
