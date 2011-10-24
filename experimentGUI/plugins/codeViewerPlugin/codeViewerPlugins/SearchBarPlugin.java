@@ -59,21 +59,12 @@ public class SearchBarPlugin implements CodeViewerPluginInterface {
 		viewer=v;
 		if (enabled) {
 			map = new HashMap<EditorPanel,SearchBar>();
-			JMenuItem findMenuItem = new JMenuItem("Suchen");
-			findMenuItem.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.Event.CTRL_MASK));
-			findMenuItem.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					SearchBar curr = map.get(viewer.getTabbedPane().getSelectedComponent());
-					if (curr!=null) {
-						curr.setVisible(true);
-						curr.grabFocus();
-					}
-				}
-
-			});
-			viewer.addMenuItemToEditMenu(findMenuItem);
+			SearchBar curr = map.get(viewer.getTabbedPane().getSelectedComponent());
+			if (curr!=null) {
+				curr.setVisible(true);
+				curr.grabFocus();
+			}
 
 			boolean activateGlobal = Boolean.parseBoolean(selected.getAttribute(KEY).getAttributeValue(KEY_ENABLE_GLOBAL));
 			if (activateGlobal) {
@@ -99,26 +90,14 @@ public class SearchBarPlugin implements CodeViewerPluginInterface {
 				}
 
 				JSplitPane vsplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-				JPanel curr = (JPanel)viewer.getContentPane();
+				JPanel currPane = (JPanel)viewer.getContentPane();
 
-				vsplit.setTopComponent(curr);
+				vsplit.setTopComponent(currPane);
 				vsplit.setBottomComponent(globalSearchBar);
 				vsplit.setDividerLocation(400);
 				globalSearchBar.setMinimumSize(new Dimension(400, 200));
 				viewer.setContentPane(vsplit);
 
-				JMenuItem findGlobalMenuItem = new JMenuItem("Global suchen");
-				findGlobalMenuItem.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.Event.CTRL_MASK));
-				findGlobalMenuItem.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						globalSearchBar.setVisible(true);
-						globalSearchBar.grabFocus();
-					}
-
-				});
-				viewer.addMenuItemToEditMenu(findGlobalMenuItem);
 			}
 		}
 	}
