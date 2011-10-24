@@ -97,15 +97,12 @@ public class AnswersTest extends JFrame implements ActionListener {
 				String[] attributesContent = new String[ATTRIBUTES.length];
 				while(e.hasMoreElements()) {
 					Object name = e.nextElement();
-//					System.out.print(name + ":" + as.getAttribute(name) + " - ");
 					for(int i=0; i<ATTRIBUTES.length; i++) {
 						if(name.toString().equals(ATTRIBUTES[i])) {
 							attributesContent[i] = as.getAttribute(name).toString();
 						}
 					}
 				}
-//				System.out.println();
-				//check if primary attributes are available
 				boolean store = true;
 				for(int i=0; i<PRIMARY_ATTRIBUTES.length; i++) {
 					if(attributesContent[PRIMARY_ATTRIBUTES[i]] == null) {
@@ -113,7 +110,6 @@ public class AnswersTest extends JFrame implements ActionListener {
 						break;
 					}
 				}
-				//if primary attributes are present store the important attributes
 				if(store) {
 					HashMap<String, String> hm = new HashMap<String, String>();
 					for(int i=0; i<ATTRIBUTES.length; i++) {
@@ -128,37 +124,3 @@ public class AnswersTest extends JFrame implements ActionListener {
 		}
 	}
 }
-
-// Hallo.<br> Gib deinen Namen ein: <input id="name"><br> Gib dein Alter ein:
-// <input id="alter"><br> <table width="100%">
-//
-// <tr align=center>
-//
-// <td>Programmiererfahrung</td>
-//
-// <td><input type="radio" id="Programmiererfahrung" answer="true" weight="3" value="0"></td>
-//
-// <td><input type="radio" id="Programmiererfahrung" value="1"></td>
-//
-// <td><input type="radio" id="Programmiererfahrung" value="2" weight="2"></td>
-//
-// <td><input type="radio" id="Programmiererfahrung" value="3" answer="false"></td>
-//
-// <td><input type="radio" id="Programmiererfahrung" value="4" answer="false" weight="1"></td>
-//
-// </tr> <tr align=center style="background-color:silver">
-//
-// <td>Leer Zeichen</td>
-//
-// <td><input type="radio" id="Leer Zeichen" value="0" answer="true" weight="1"></td>
-//
-// <td><input type="radio" id="Leer Zeichen" value="1" answer="true" weight="1"></td>
-//
-// <td><input type="radio" id="Leer Zeichen" value="2" answer="true" weight="1"></td>
-//
-// <td><input type="radio" id="Leer Zeichen" value="3" answer="true" weight="1"></td>
-//
-// <td><input type="radio" id="Leer Zeichen" value="4" answer="true" weight="1"></td>
-//
-// </tr> </table>
-

@@ -23,20 +23,20 @@ public class ChangePlugin implements RecorderPluginInterface {
 	public final static String ATTRIBUTE_OFFSET = "offset";
 	public final static String ATTRIBUTE_LENGTH = "length";
 	public final static String ATTRIBUTE_CONTENT = "content";
-	
+
 	private boolean enabled;
 	private boolean join;
 	private long joinTime;
 
 	private LoggingTreeNode currentNode;
 	private Document currentDocument;
-	
+
 	private DocumentListener myListener;
 
 	@Override
 	public SettingsComponentDescription getSettingsComponentDescription() {
-		SettingsPluginComponentDescription resultDesc = new SettingsPluginComponentDescription(KEY, "Quelltextänderungen", true);
-		SettingsPluginComponentDescription joinDesc = new SettingsPluginComponentDescription(KEY_JOIN, "Änderungen zusammenfassen", true);
+		SettingsPluginComponentDescription resultDesc = new SettingsPluginComponentDescription(KEY, "QuelltextÃ¤nderungen", true);
+		SettingsPluginComponentDescription joinDesc = new SettingsPluginComponentDescription(KEY_JOIN, "Ã„nderungen zusammenfassen", true);
 		SettingsComponentDescription joinTimeDesc = new SettingsComponentDescription(SettingsTextField.class,KEY_JOIN_TIME, "Grenzzeit (ms, z.B. 1000)");
 		joinDesc.addSubComponent(joinTimeDesc);
 		resultDesc.addSubComponent(joinDesc);
@@ -64,7 +64,7 @@ public class ChangePlugin implements RecorderPluginInterface {
 			myListener = new DocumentListener() {
 				@Override
 				public void changedUpdate(DocumentEvent arg0) {
-					
+
 				}
 
 				@Override
@@ -78,7 +78,7 @@ public class ChangePlugin implements RecorderPluginInterface {
 						e.printStackTrace();
 					}
 					if (join && currentNode.getChildCount()>0) {
-						//Knoten zusammenführen?
+						//Knoten zusammenfï¿½hren?
 						LoggingTreeNode lastNode = (LoggingTreeNode)currentNode.getLastChild();
 						boolean wasInsert = lastNode.getType().equals(TYPE_INSERT);
 						if (wasInsert) {
@@ -90,7 +90,7 @@ public class ChangePlugin implements RecorderPluginInterface {
 								lastNode.setAttribute(ATTRIBUTE_LENGTH, ""+newLength);
 								lastNode.setAttribute(ATTRIBUTE_CONTENT, newContent);
 								lastNode.setAttribute(LoggingTreeNode.ATTRIBUTE_TIME, ""+System.currentTimeMillis());
-								return;	
+								return;
 							}
 						}
 					}
@@ -106,7 +106,7 @@ public class ChangePlugin implements RecorderPluginInterface {
 					int offset = arg0.getOffset();
 					int length = arg0.getLength();
 					if (join && currentNode.getChildCount()>0) {
-						//Knoten zusammenführen?
+						//Knoten zusammenfï¿½hren?
 						LoggingTreeNode lastNode = (LoggingTreeNode)currentNode.getLastChild();
 						boolean wasRemove = lastNode.getType().equals(TYPE_REMOVE);
 						if (wasRemove) {
@@ -129,7 +129,7 @@ public class ChangePlugin implements RecorderPluginInterface {
 					node.setAttribute(ATTRIBUTE_OFFSET, ""+offset);
 					node.setAttribute(ATTRIBUTE_LENGTH, ""+length);
 					currentNode.add(node);
-				}				
+				}
 			};
 		}
 	}

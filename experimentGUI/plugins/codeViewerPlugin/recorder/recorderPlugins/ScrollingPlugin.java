@@ -23,11 +23,11 @@ public class ScrollingPlugin implements RecorderPluginInterface {
 	public final static String KEY = "scrolling";
 	public final static String KEY_JOIN = "join";
 	public final static String KEY_JOIN_TIME = "jointime";
-	
+
 	public final static String TYPE_SCROLLING = "scrolling";
 	public final static String ATTRIBUTE_STARTLINE = "startline";
 	public final static String ATTRIBUTE_ENDLINE = "endline";
-	
+
 	private boolean enabled;
 	private boolean join;
 	private long joinTime;
@@ -35,13 +35,13 @@ public class ScrollingPlugin implements RecorderPluginInterface {
 	private LoggingTreeNode currentNode;
 	private JViewport currentViewPort;
 	private RSyntaxTextArea currentTextArea;
-	
+
 	private ChangeListener myListener;
 
 	@Override
 	public SettingsComponentDescription getSettingsComponentDescription() {
 		SettingsPluginComponentDescription resultDesc = new SettingsPluginComponentDescription(KEY, "Scrollverhalten", true);
-		SettingsPluginComponentDescription joinDesc = new SettingsPluginComponentDescription(KEY_JOIN, "Scrollvorgänge zusammenfassen", true);
+		SettingsPluginComponentDescription joinDesc = new SettingsPluginComponentDescription(KEY_JOIN, "ScrollvorgÃ¤nge zusammenfassen", true);
 		SettingsComponentDescription joinTimeDesc = new SettingsComponentDescription(SettingsTextField.class,KEY_JOIN_TIME, "Grenzzeit (ms, z.B. 1000)");
 		joinDesc.addSubComponent(joinTimeDesc);
 		resultDesc.addSubComponent(joinDesc);
@@ -91,7 +91,7 @@ public class ScrollingPlugin implements RecorderPluginInterface {
 						boolean wasScrolling = lastNode.getType().equals(TYPE_SCROLLING);
 						if (wasScrolling) {
 							if (join) {
-								//Knoten zusammenführen?
+								//Knoten zusammenfÃ¼hren?
 								long timeDiff = System.currentTimeMillis()-Long.parseLong(lastNode.getAttribute(LoggingTreeNode.ATTRIBUTE_TIME));
 								if (timeDiff<joinTime) {
 									lastNode.setAttribute(ATTRIBUTE_STARTLINE, ""+startLine);
@@ -100,7 +100,7 @@ public class ScrollingPlugin implements RecorderPluginInterface {
 									return;
 								}
 							}
-							//Wenn Zeilen nicht geändert wurden: nichts machen
+							//Wenn Zeilen nicht geÃ¤ndert wurden: nichts machen
 							int lastStartLine = Integer.parseInt(lastNode.getAttribute(ATTRIBUTE_STARTLINE));
 							int lastEndLine = Integer.parseInt(lastNode.getAttribute(ATTRIBUTE_ENDLINE));
 							if (startLine==lastStartLine && endLine==lastEndLine) {
@@ -113,7 +113,7 @@ public class ScrollingPlugin implements RecorderPluginInterface {
 					node.setAttribute(ATTRIBUTE_STARTLINE, ""+startLine);
 					node.setAttribute(ATTRIBUTE_ENDLINE, ""+endLine);
 					currentNode.add(node);
-				}				
+				}
 			};
 		}
 	}
