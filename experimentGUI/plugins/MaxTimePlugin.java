@@ -17,21 +17,21 @@ import experimentGUI.util.settingsComponents.components.SettingsCheckBox;
 import experimentGUI.util.settingsComponents.components.SettingsTextField;
 
 public class MaxTimePlugin implements PluginInterface {
-	
-	public class TimeOut implements Runnable {		
+
+	public class TimeOut implements Runnable {
 		private long startTime;
 		private long duration;
-		
+
 		private boolean started;
 		private boolean stopped;
-		
+
 		private Thread myThread;
-		
+
 		private String message;
 		private boolean disable;
 		private boolean submit;
 		private QuestionTreeNode node;
-					
+
 		private TimeOut(QuestionTreeNode node, long duration, String message, boolean disable, boolean submit) {
 			this.node=node;
 			this.duration=duration;
@@ -41,7 +41,7 @@ public class MaxTimePlugin implements PluginInterface {
 
 			stopped=false;
 		}
-		
+
 		public boolean start() {
 			if (!started && duration>0) {
 				started=true;
@@ -52,7 +52,7 @@ public class MaxTimePlugin implements PluginInterface {
 			}
 			return false;
 		}
-	
+
 		public boolean stop() {
 			if (started && !stopped) {
 				stopped=true;
@@ -65,7 +65,7 @@ public class MaxTimePlugin implements PluginInterface {
 			}
 			return false;
 		}
-		
+
 		public boolean resume() {
 			if (started && stopped && duration>0) {
 				stopped=false;
@@ -76,7 +76,7 @@ public class MaxTimePlugin implements PluginInterface {
 			}
 			return false;
 		}
-		
+
 		private void action() {
 			boolean affected;
 			if (node!=null) {
@@ -84,7 +84,7 @@ public class MaxTimePlugin implements PluginInterface {
 			} else {
 				affected=true;
 			}
-			
+
 			if (message!=null && message.length()>0) {
 				if (affected) {
 					JOptionPane.showMessageDialog(experimentViewer, message);
@@ -92,7 +92,7 @@ public class MaxTimePlugin implements PluginInterface {
 					allMessages.put(node, message);
 				}
 			}
-			
+
 			if (node!=null && disable) {
 				timeOuts.add(node);
 				if (submit && affected) {
@@ -109,7 +109,7 @@ public class MaxTimePlugin implements PluginInterface {
 				return;
 			}
 			stop();
-		}		
+		}
 	}
 
 	private static final String KEY = "max_time";
@@ -122,7 +122,7 @@ public class MaxTimePlugin implements PluginInterface {
 	private static final String KEY_MESSAGE = "message";
 
 	private ExperimentViewer experimentViewer;
-	
+
 	private HashMap<QuestionTreeNode,String> allMessages = new HashMap<QuestionTreeNode,String>();
 	private HashMap<QuestionTreeNode,Vector<TimeOut>> allClocks = new HashMap<QuestionTreeNode,Vector<TimeOut>>();
 	private HashSet<QuestionTreeNode> timeOuts = new HashSet<QuestionTreeNode>();
@@ -148,7 +148,7 @@ public class MaxTimePlugin implements PluginInterface {
 					"Maximale Laufzeit (diese Frage, in Sekunden):"));
 		}
 		SettingsPluginComponentDescription hardExit = new SettingsPluginComponentDescription(KEY_HARD_EXIT,
-				"Angezeigte Frage bei Zeitüberschreitung beenden (harter Timeout)", true);
+				"Angezeigte Frage bei ZeitÃ¼berschreitung beenden (harter Timeout)", true);
 		SettingsPluginComponentDescription warning = new SettingsPluginComponentDescription(KEY_HARD_EXIT_WARNING,
 				"Probanden vorwarnen", true);
 		warning.addSubComponent(new SettingsComponentDescription(SettingsTextField.class,KEY_HARD_EXIT_WARNING_TIME,
@@ -161,7 +161,7 @@ public class MaxTimePlugin implements PluginInterface {
 				"Nachricht bei TimeOut (optional):"));
 		if (node.isCategory()) {
 			result.addNextComponent(new SettingsComponentDescription(SettingsCheckBox.class,KEY_IGNORE_TIMEOUT,
-					"Experiment-TimeOut ignorieren; gilt auch für alle Unterknoten"));
+					"Experiment-TimeOut ignorieren; gilt auch fÃ¼r alle Unterknoten"));
 		}
 		return result;
 	}
@@ -183,7 +183,7 @@ public class MaxTimePlugin implements PluginInterface {
 		}
 		return false;
 	}
-	
+
 	private boolean isTimeOutAffectedBy(QuestionTreeNode node, QuestionTreeNode timeOutNode) {
 		while (node!=null) {
 			if (node==timeOutNode) {
@@ -197,7 +197,7 @@ public class MaxTimePlugin implements PluginInterface {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean denyEnterNode(QuestionTreeNode node) {
 		if (allMessages.size()>0) {
@@ -212,7 +212,7 @@ public class MaxTimePlugin implements PluginInterface {
 		}
 		return isTimeOuted(node);
 	}
-	
+
 	private void startTimers(QuestionTreeNode node) {
 		Vector<TimeOut> nodeClocks = allClocks.get(node);
 		if (nodeClocks==null) {
@@ -221,16 +221,16 @@ public class MaxTimePlugin implements PluginInterface {
 				return;
 			}
 			QuestionTreeNode pluginNode = node.getAttribute(KEY);
-			
+
 			nodeClocks = new Vector<TimeOut>();
 			allClocks.put(node, nodeClocks);
-			
+
 			long maxTime = Long.parseLong(pluginNode.getAttributeValue(KEY_MAX_TIME));
 			if (node.isExperiment()) {
 				maxTime*=60;
 			}
 			String message = pluginNode.getAttributeValue(KEY_MESSAGE);
-			
+
 			if (maxTime<=0) {
 				return;
 			}
@@ -238,32 +238,32 @@ public class MaxTimePlugin implements PluginInterface {
 			TimeOut mainTimeOut = new TimeOut(node, maxTime*1000, message, true, hard);
 			nodeClocks.add(mainTimeOut);
 			mainTimeOut.start();
-			
+
 			if (!hard) {
 				return;
 			}
 			QuestionTreeNode hardNode = pluginNode.getAttribute(KEY_HARD_EXIT);
 			boolean hardWarning = Boolean.parseBoolean(hardNode.getAttributeValue(KEY_HARD_EXIT_WARNING));
-			
+
 			if (!hardWarning) {
 				return;
 			}
-			
+
 			QuestionTreeNode hardWarningNode = hardNode.getAttribute(KEY_HARD_EXIT_WARNING);
-			
+
 			String hardWarningTimeString = hardWarningNode.getAttributeValue(KEY_HARD_EXIT_WARNING_TIME);
 			String hardWarningMessage = hardWarningNode.getAttributeValue(KEY_HARD_EXIT_WARNING_MESSAGE);
-			
+
 			if (hardWarningTimeString==null || hardWarningTimeString.length()>0 ||
 					hardWarningMessage==null || hardWarningMessage.length()>0) {
 				return;
 			}
 			long hardWarningTime = maxTime-Long.parseLong(hardWarningTimeString);
-			
+
 			if (hardWarningTime<=0) {
 				return;
 			}
-			
+
 			TimeOut warningTimeOut = new TimeOut(node, hardWarningTime*1000, hardWarningMessage, false, false);
 			nodeClocks.add(warningTimeOut);
 			warningTimeOut.start();
@@ -273,7 +273,7 @@ public class MaxTimePlugin implements PluginInterface {
 			}
 		}
 	}
-	
+
 	@Override
 	public void enterNode(QuestionTreeNode node) {
 		currentNode = node;
@@ -283,7 +283,7 @@ public class MaxTimePlugin implements PluginInterface {
 			return;
 		}
 		if (activateForExperiment) {
-			startTimers(experimentNode);			
+			startTimers(experimentNode);
 			activateForExperiment=false;
 		}
 		startTimers(node);

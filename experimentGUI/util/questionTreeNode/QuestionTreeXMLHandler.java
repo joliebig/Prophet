@@ -126,10 +126,10 @@ public class QuestionTreeXMLHandler {
 	 *            the xml-document
 	 */
 	private static void saveXMLAnswerNode(Document xmlTree, Element xmlNode, QuestionTreeNode treeNode) {
-		// Name hinzuf�gen
+		// Name hinzufügen
 		xmlNode.setAttribute(ATTRIBUTE_NAME, treeNode.getName());
 		xmlNode.setAttribute(ATTRIBUTE_TIME, "" + treeNode.getAnswerTime());
-		// evtl. Antworten hinzuf�gen
+		// evtl. Antworten hinzufügen
 		if (treeNode.getAnswers().size() > 0) {
 			Element xmlAnswersNode = xmlTree.createElement(TYPE_ANSWERS);
 			xmlNode.appendChild(xmlAnswersNode);
@@ -140,7 +140,7 @@ public class QuestionTreeXMLHandler {
 				xmlAnswersNode.appendChild(xmlChild);
 			}
 		}
-		// evtl. Kinder hinzuf�gen
+		// evtl. Kinder hinzufügen
 		if (treeNode.getChildCount() > 0) {
 			Element xmlChildrenNode = xmlTree.createElement(TYPE_CHILDREN);
 			xmlNode.appendChild(xmlChildrenNode);
@@ -265,7 +265,7 @@ public class QuestionTreeXMLHandler {
 		if (xmlValueNode != null) {
 			result.setValue(xmlValueNode.getNodeValue());
 		}
-		// Attribute hinzuf�gen
+		// Attribute hinzufügen
 		NamedNodeMap xmlAttributeMap = xmlNode.getAttributes();
 		for (int i = 0; i < xmlAttributeMap.getLength(); i++) {
 			Node xmlAttribute = xmlAttributeMap.item(i);
@@ -274,7 +274,7 @@ public class QuestionTreeXMLHandler {
 			attributeNode.setValue(xmlAttribute.getNodeValue());
 			result.setAttribute(xmlAttribute.getNodeName(), attributeNode);
 		}
-		// Answers und Kinder hinzuf�gen
+		// Answers und Kinder hinzufügen
 		NodeList xmlMetaNodes = xmlNode.getChildNodes();
 		for (int i = 0; i < xmlMetaNodes.getLength(); i++) {
 			Node xmlMetaNode = xmlMetaNodes.item(i);
