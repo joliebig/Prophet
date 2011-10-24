@@ -67,16 +67,16 @@ public class EditAndSavePlugin implements CodeViewerPluginInterface {
 					saveAllFiles();
 				}
 			});
-		}		
+		}
 	}
-	
+
 	private void saveActiveFile() {
 		Component activeComp = tabbedPane.getSelectedComponent();
 		if (activeComp != null && activeComp instanceof EditorPanel) {
 			saveEditorPanel((EditorPanel) activeComp);
 		}
 	}
-	
+
 	private void saveAllFiles() {
 		for (int i = 0; i < tabbedPane.getTabCount(); i++) {
 			Component myComp = tabbedPane.getComponentAt(i);
@@ -85,7 +85,7 @@ public class EditAndSavePlugin implements CodeViewerPluginInterface {
 			}
 		}
 	}
-	
+
 	private void saveEditorPanel(EditorPanel editorPanel) {
 		File file = new File(saveDir.getPath() + editorPanel.getFilePath());
 		FileWriter fileWriter = null;
@@ -127,27 +127,27 @@ public class EditAndSavePlugin implements CodeViewerPluginInterface {
 				readdDocumentListeners((RSyntaxDocument)doc,listeners);
 			}
 			textArea.setEditable(true);
-			textArea.getDocument().addDocumentListener(new DocumentListener() {			
+			textArea.getDocument().addDocumentListener(new DocumentListener() {
 				private void changeOccured() {
 					isChanged.put(editorPanel, true);
 				}
 				public void changedUpdate(DocumentEvent arg0) {
 //					changeOccured();
 				}
-	
+
 				@Override
 				public void insertUpdate(DocumentEvent arg0) {
 					changeOccured();
 				}
-				
+
 				@Override
 				public void removeUpdate(DocumentEvent arg0) {
 					changeOccured();
-				}			
+				}
 			});
 		}
 	}
-	
+
 	private DocumentListener[] removeDocumentListener(RSyntaxDocument doc) {
 		DocumentListener[] listeners = doc.getDocumentListeners();
 		for (DocumentListener listener : listeners) {
@@ -166,7 +166,7 @@ public class EditAndSavePlugin implements CodeViewerPluginInterface {
 		if (editable) {
 			Boolean changed = isChanged.get(editorPanel);
 			if (changed != null && changed.booleanValue()) {
-				int n = JOptionPane.showConfirmDialog(null, "Änderungen speichern?", "Speichern?",
+				int n = JOptionPane.showConfirmDialog(null, "Ã„nderungen speichern?", "Speichern?",
 						JOptionPane.YES_NO_OPTION);
 				if (n == JOptionPane.YES_OPTION) {
 					saveEditorPanel(editorPanel);
@@ -179,25 +179,16 @@ public class EditAndSavePlugin implements CodeViewerPluginInterface {
 	@Override
 	public void onClose() {
 		if (editable) {
-			boolean ask = false;
 			for (int i = 0; i < tabbedPane.getTabCount(); i++) {
 				Component myComp = tabbedPane.getComponentAt(i);
 				if (myComp instanceof EditorPanel) {
 					Boolean changed = isChanged.get(myComp);
-					System.out.println(changed);
 					if (changed!=null && changed.booleanValue()) {
-						ask=true;
 						break;
 					}
 				}
 			}
-			if (ask) {
-				int n = JOptionPane.showConfirmDialog(null, "Änderungen speichern?", "Speichern?",
-						JOptionPane.YES_NO_OPTION);
-				if (n == JOptionPane.YES_OPTION) {
-					saveAllFiles();
-				}
-			}
+			saveAllFiles();
 			isChanged=null;
 		}
 	}
