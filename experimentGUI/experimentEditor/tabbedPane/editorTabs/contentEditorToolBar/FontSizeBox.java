@@ -13,7 +13,7 @@ import experimentGUI.util.Pair;
 /**
  * Box for the ContentEditorToolBar, adding HTML tags to change font sizes
  * @author Andreas Hasselberg
- * @author Markus K�ppen
+ * @author Markus K�ppen
  *
  */
 @SuppressWarnings("serial")
@@ -37,7 +37,7 @@ public class FontSizeBox extends JComboBox implements ActionListener{
 		fontSizes.add(new Pair<String, String>("+2", "+2"));
 		fontSizes.add(new Pair<String, String>("+3", "+3"));
 
-		this.addItem("Schriftgr\u00f6\u00dfe");
+		this.addItem("Schriftgröße");
 		for(int i=0; i<fontSizes.size(); i++) {
 			this.addItem(fontSizes.get(i).getKey());
 		}

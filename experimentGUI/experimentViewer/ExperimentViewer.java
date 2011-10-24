@@ -28,7 +28,7 @@ import experimentGUI.util.questionTreeNode.QuestionTreeXMLHandler;
  * This class shows the html files (questions) creates the navigation and
  * navigates everything...
  *
- * @author Markus K�ppen, Andreas Hasselberg
+ * @author Markus Köppen, Andreas Hasselberg
  *
  */
 public class ExperimentViewer extends JFrame {
@@ -117,7 +117,7 @@ public class ExperimentViewer extends JFrame {
 			if(myTree!=null) {
 				tree=myTree;
 			} else {
-				JOptionPane.showMessageDialog(this, "Keine g\u00fcltige Experiment-Datei.");
+				JOptionPane.showMessageDialog(this, "Keine gültige Experiment-Datei.");
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this, "Experiment nicht gefunden.");
@@ -130,7 +130,7 @@ public class ExperimentViewer extends JFrame {
 			public void windowClosing(WindowEvent arg0) {
 				if (experimentNotRunning) {
 					System.exit(0);
-				} else if (JOptionPane.showConfirmDialog(null, "Das Experiment ist noch nicht abgeschlossen. Experiment beenden?", "Best\u00e4tigung", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+				} else if (JOptionPane.showConfirmDialog(null, "Das Experiment ist noch nicht abgeschlossen. Experiment beenden?", "Bestätigung", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
 					exitExperiment = true;
 					currentViewPane.clickSubmit();
 				}

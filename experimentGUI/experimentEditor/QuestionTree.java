@@ -8,7 +8,7 @@ package experimentGUI.experimentEditor;
  * All Childs of the second Level get a SettingDialog and EditorData will save the informations.
  * All nodes will have a unique name.
  *
- * @author Markus K�ppen, Andreas Hasselberg
+ * @author Markus Köppen, Andreas Hasselberg
  */
 
 import java.awt.Point;
@@ -44,37 +44,37 @@ import experimentGUI.util.questionTreeNode.QuestionTreeNodeListener;
  * based on the QuestionTreeNode class.
  *
  * @author Andreas Hasselberg
- * @author Markus K�ppen
+ * @author Markus Köppen
  *
  */
 public class QuestionTree extends JScrollPane {
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * the actual JTree component
 	 */
 	private JTree tree;
-	
+
 	/**
 	 * currently selected QuestionTreeNode
 	 */
 	private QuestionTreeNode selected;
-	
+
 	/**
 	 * QuestionTreeNode currently in the Clipboard
 	 */
 	private QuestionTreeNode clipboard;
-	
+
 	/**
 	 * popup menu shown when the experiment node is right clicked
 	 */
 	private JPopupMenu experimentPopup;
-	
+
 	/**
 	 * popup menu shown when a category node is right clicked
 	 */
 	private JPopupMenu categoryPopup;
-	
+
 	/**
 	 * popup menu shown when a question node is right clicked
 	 */
@@ -93,9 +93,9 @@ public class QuestionTree extends JScrollPane {
 	public final static String POPUP_NEW_CATEGORY = "Neue Kategorie";
 	public final static String POPUP_NEW_QUESTION = "Neue Frage";
 	public final static String POPUP_RENAME = "Umbenennen";
-	public final static String POPUP_REMOVE = "L\u00f6schen";
+	public final static String POPUP_REMOVE = "Löschen";
 	public final static String POPUP_COPY = "Kopieren";
-	public final static String POPUP_PASTE = "Einf\u00fcgen";
+	public final static String POPUP_PASTE = "Einfügen";
 
 	/**
 	 * String constants for messages
@@ -355,8 +355,8 @@ public class QuestionTree extends JScrollPane {
 		}
 	}
 
-	
-	
+
+
 	/**
 	 * renames a node
 	 *
@@ -436,7 +436,7 @@ public class QuestionTree extends JScrollPane {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 *  current experiment tree root node
 	 */
@@ -454,7 +454,7 @@ public class QuestionTree extends JScrollPane {
 			questionTreeListeners = new Vector<QuestionTreeNodeListener>();
 		questionTreeListeners.addElement(l);
 	}
-	
+
 	/**
 	 * Removes a TreeNodeListener from the object
 	 * @param l

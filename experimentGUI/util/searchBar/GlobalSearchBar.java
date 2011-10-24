@@ -30,37 +30,37 @@ import experimentGUI.plugins.codeViewerPlugin.fileTree.FileTreeNode;
 /**
  * This class adds a JTextPane to a searchbar which is created. With this
  * searchBar the user can search through the text in the JTextPane User
- * 
- * @author Robert Futrell, Markus K�ppen, Andreas Hasselberg
+ *
+ * @author Robert Futrell, Markus Köppen, Andreas Hasselberg
  */
 
 public class GlobalSearchBar extends JToolBar implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	
+
 	public static final String CAPTION_HIDE = "X";
 	public static final String CAPTION_FIND = "Find";
 	public static final String CAPTION_REGEX = "Regex";
-	public static final String CAPTION_MATCH_CASE = "Gro\u00DF-/Kleinschreibung";
-	
+	public static final String CAPTION_MATCH_CASE = "Groß-/Kleinschreibung";
+
 	public static final String ACTION_HIDE = "Hide";
 	public static final String ACTION_NEXT = "Global";
-	
+
 	private JButton hideButton = new JButton(CAPTION_HIDE);
 	private JTextField searchField = new JTextField(30);
 	private JButton forwardButton = new JButton(CAPTION_FIND);
 	private JCheckBox regexCB = new JCheckBox(CAPTION_REGEX);
 	private JCheckBox matchCaseCB = new JCheckBox(CAPTION_MATCH_CASE);
-	
+
 	private File file;
 	private FileTree tree;
 	private CodeViewer viewer;
-	
+
 	private Vector<SearchBarListener> listeners = new Vector<SearchBarListener>();
-	
+
 	public void addSearchBarListener(SearchBarListener l) {
 		listeners.add(l);
 	}
-	
+
 	public void removeSearchBarListener(SearchBarListener l) {
 		listeners.remove(l);
 	}
@@ -89,12 +89,12 @@ public class GlobalSearchBar extends JToolBar implements ActionListener {
 				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 					forwardButton.doClick();
 				}
-			}	
+			}
 		});
 		northPanel.add(searchField);
 		forwardButton.setActionCommand(ACTION_NEXT);
 		forwardButton.addActionListener(this);
-		
+
 		tree = new FileTree(null);
 		tree.addFileListener(new FileListener() {
 
@@ -102,10 +102,10 @@ public class GlobalSearchBar extends JToolBar implements ActionListener {
 			public void fileEventOccured(FileEvent e) {
 				viewer.getTabbedPane().openFile(e.getFilePath());
 			}
-			
+
 		});
 		this.file=file;
-		
+
 		northPanel.add(forwardButton);
 		northPanel.add(regexCB);
 		northPanel.add(matchCaseCB);
@@ -116,17 +116,17 @@ public class GlobalSearchBar extends JToolBar implements ActionListener {
 
 	public void actionPerformed(ActionEvent action) {
 		String command = action.getActionCommand();
-		
+
 		if (command.equals(ACTION_HIDE)) {
 			setVisible(false);
 			return;
-		}		
+		}
 
 		String text = searchField.getText();
 		if (text.length() == 0) {
 			return;
 		}
-		
+
 		FileTreeNode root;
 		try {
 			root = new FileTreeNode(file);
@@ -134,21 +134,21 @@ public class GlobalSearchBar extends JToolBar implements ActionListener {
 			tree.getTree().setModel(new DefaultTreeModel(null));
 			return;
 		}
-		
-		
+
+
 		if (getNextLeaf(root)==null) {
 			root.removeAllChildren();
-		} else {			
+		} else {
 			boolean forward = true;
 			boolean matchCase = matchCaseCB.isSelected();
 			boolean wholeWord = false;
 			boolean regex = regexCB.isSelected();
-			
+
 			FileTreeNode current = getNextLeaf(root);
 			FileTreeNode delete = null;
 
 			RSyntaxTextArea textArea = new RSyntaxTextArea();
-			
+
 			while(current!=null) {
 //				System.out.println("CURR: "+current.getFilePath());
 				if (current.isFile()) {
@@ -186,9 +186,9 @@ public class GlobalSearchBar extends JToolBar implements ActionListener {
 				}
 			}
 		}
-		
+
 		tree.getTree().setModel(new FileTreeModel(root));
-		
+
 		for (SearchBarListener l : listeners) {
 			l.searched(command, text, root.getChildCount()>0);
 		}
@@ -213,11 +213,11 @@ public class GlobalSearchBar extends JToolBar implements ActionListener {
 	public JCheckBox getMatchCaseCB() {
 		return matchCaseCB;
 	}
-	
+
 	public FileTree getTree() {
 		return tree;
 	}
-	
+
 	private FileTreeNode getNextLeaf(FileTreeNode node) {
 		do {
 			node=(FileTreeNode)node.getNextNode();

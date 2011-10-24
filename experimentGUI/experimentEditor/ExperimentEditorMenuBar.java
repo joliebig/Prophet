@@ -54,7 +54,7 @@ public class ExperimentEditorMenuBar extends JMenuBar {
 	public final static String MESSAGE_FILE_NOT_FOUND = "Datei nicht gefunden";
 	public final static String MESSAGE_FILE_NOT_FOUND_TITLE = "Fehler";
 	public final static String MESSAGE_REPLACE_FILE = " ist bereits vorhanden.\nWollen Sie sie ersetzen?";
-	public final static String MESSAGE_REPLACE_FILE_TITLE = "Speichern unter best\u00e4tigen";
+	public final static String MESSAGE_REPLACE_FILE_TITLE = "Speichern unter bestätigen";
 
 	private ExperimentEditor experimentEditor;
 	private File currentFile;
@@ -235,7 +235,7 @@ public class ExperimentEditorMenuBar extends JMenuBar {
 		JMenu extrasMenu = new JMenu("Extras");
 		add(extrasMenu);
 
-		nameCheckMenuItem = new JMenuItem("\u00DCberpr\u00FCfung Formularnamen");
+		nameCheckMenuItem = new JMenuItem("Überprüfung Formularnamen");
 		extrasMenu.add(nameCheckMenuItem);
 		nameCheckMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -299,7 +299,7 @@ public class ExperimentEditorMenuBar extends JMenuBar {
 	 * @param answerNodes
 	 *  storage for the data from the answer.xml files
 	 * @param experimentCode
-	 *  used experiment code 
+	 *  used experiment code
 	 * @param search
 	 *  if false the answer.xml files of this directory are not used - but the files of the subdirectories are still used
 	 */

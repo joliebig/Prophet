@@ -139,7 +139,7 @@ public class LanguageEditor extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		addButton = new JButton("Hinzuf\u00FCgen");
+		addButton = new JButton("Hinzufügen");
 		textField = new JTextField();
 		textField.setColumns(10);
 		removeButton = new JButton("Entfernen");

@@ -1,11 +1,14 @@
 package experimentGUI.plugins.codeViewerPlugin.codeViewerPlugins;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.KeyStroke;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
@@ -26,19 +29,19 @@ public class SearchBarPlugin implements CodeViewerPluginInterface {
 	public final static String KEY = "searchable";
 	public final static String KEY_DISABLE_REGEX = "disableregex";
 	public final static String KEY_ENABLE_GLOBAL = "enableglobal";
-	
+
 	public final static String TYPE_SEARCH = "search";
 	public final static String ATTRIBUTE_ACTION = "action";
 	public final static String ATTRIBUTE_QUERY = "query";
 	public final static String ATTRIBUTE_SUCCESS = "success";
 	private CodeViewer viewer;
-	
+
 	QuestionTreeNode selected;
 	boolean enabled;
-	
+
 	HashMap<EditorPanel, SearchBar> map;
 	GlobalSearchBar globalSearchBar;
-	
+
 	@Override
 	public SettingsComponentDescription getSettingsComponentDescription() {
 		SettingsPluginComponentDescription result = new SettingsPluginComponentDescription(KEY, "Suchfunktion einschalten", true);
@@ -68,15 +71,15 @@ public class SearchBarPlugin implements CodeViewerPluginInterface {
 						curr.grabFocus();
 					}
 				}
-				
+
 			});
 			viewer.addMenuItemToEditMenu(findMenuItem);
-			
+
 			boolean activateGlobal = Boolean.parseBoolean(selected.getAttribute(KEY).getAttributeValue(KEY_ENABLE_GLOBAL));
 			if (activateGlobal) {
 				globalSearchBar = new GlobalSearchBar(viewer.getShowDir(), v);
 				globalSearchBar.setVisible(false);
-				
+
 				globalSearchBar.addSearchBarListener(new SearchBarListener() {
 
 					@Override
@@ -86,17 +89,24 @@ public class SearchBarPlugin implements CodeViewerPluginInterface {
 						node.setAttribute(ATTRIBUTE_ACTION, action);
 						node.setAttribute(ATTRIBUTE_QUERY, query);
 						node.setAttribute(ATTRIBUTE_SUCCESS, ""+success);
-						viewer.getRecorder().addLoggingTreeNode(node);		
+						viewer.getRecorder().addLoggingTreeNode(node);
 					}
-					
+
 				});
-				
+
 				if (Boolean.parseBoolean(selected.getAttribute(KEY).getAttributeValue(KEY_DISABLE_REGEX))) {
 					globalSearchBar.getRegexCB().setVisible(false);
 				}
 
-				viewer.add(globalSearchBar, BorderLayout.SOUTH);
-				
+				JSplitPane vsplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+				JPanel curr = (JPanel)viewer.getContentPane();
+
+				vsplit.setTopComponent(curr);
+				vsplit.setBottomComponent(globalSearchBar);
+				vsplit.setDividerLocation(400);
+				globalSearchBar.setMinimumSize(new Dimension(400, 200));
+				viewer.setContentPane(vsplit);
+
 				JMenuItem findGlobalMenuItem = new JMenuItem("Global suchen");
 				findGlobalMenuItem.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.Event.CTRL_MASK));
 				findGlobalMenuItem.addActionListener(new ActionListener() {
@@ -106,7 +116,7 @@ public class SearchBarPlugin implements CodeViewerPluginInterface {
 						globalSearchBar.setVisible(true);
 						globalSearchBar.grabFocus();
 					}
-					
+
 				});
 				viewer.addMenuItemToEditMenu(findGlobalMenuItem);
 			}
@@ -127,16 +137,16 @@ public class SearchBarPlugin implements CodeViewerPluginInterface {
 					node.setAttribute(ATTRIBUTE_ACTION, action);
 					node.setAttribute(ATTRIBUTE_QUERY, query);
 					node.setAttribute(ATTRIBUTE_SUCCESS, ""+success);
-					viewer.getRecorder().addLoggingTreeNode(node);		
+					viewer.getRecorder().addLoggingTreeNode(node);
 				}
-				
+
 			});
-			
+
 			if (Boolean.parseBoolean(selected.getAttribute(KEY).getAttributeValue(KEY_DISABLE_REGEX))) {
 				searchBar.getRegexCB().setVisible(false);
 			}
-			
-			editorPanel.add(searchBar, BorderLayout.SOUTH);			
+
+			editorPanel.add(searchBar, BorderLayout.SOUTH);
 			map.put(editorPanel, searchBar);
 		}
 	}

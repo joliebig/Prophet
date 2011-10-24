@@ -16,7 +16,7 @@ import experimentGUI.util.questionTreeNode.QuestionTreeNode;
 /**
  * The right-side tabbed pane of the Experiment Editor
  * @author Andreas Hasselberg
- * @author Markus K�ppen
+ * @author Markus Köppen
  */
 @SuppressWarnings("serial")
 public class ExperimentEditorTabbedPane extends JTabbedPane {

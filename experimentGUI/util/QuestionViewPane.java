@@ -31,15 +31,15 @@ import experimentGUI.util.questionTreeNode.QuestionTreeNode;
 /**
  * This class shows the html files (questions) creates the navigation and
  * navigates everything...
- * 
- * @author Markus Köppen, Andreas Hasselberg
- * 
+ *
+ * @author Markus Kï¿½ppen, Andreas Hasselberg
+ *
  */
 @SuppressWarnings("serial")
 public class QuestionViewPane extends JScrollPane {
 	public static final String FOOTER_FORWARD_CAPTION = "Weiter";
-	public static final String FOOTER_BACKWARD_CAPTION = "Zurück";
-	public static final String FOOTER_END_CATEGORY_CAPTION = "Kategorie Abschließen";
+	public static final String FOOTER_BACKWARD_CAPTION = "ZurÃ¼ck";
+	public static final String FOOTER_END_CATEGORY_CAPTION = "Kategorie AbschlieÃŸen";
 	public static final String FOOTER_START_EXPERIMENT_CAPTION = "Experiment starten";
 	public static final String FOOTER_SUBJECT_CODE_CAPTION = "Probandencode:";
 
@@ -72,7 +72,7 @@ public class QuestionViewPane extends JScrollPane {
 	/**
 	 * With the call of the Constructor the data is loaded and everything is
 	 * initialized. The first question is showed.
-	 * 
+	 *
 	 * @param path
 	 *            path of the xml file with the data
 	 * @param cqlp
@@ -135,10 +135,10 @@ public class QuestionViewPane extends JScrollPane {
 					        	JOptionPane.showMessageDialog(textPane, "Fehlerhafte URL.");
 							}
 				        } else {
-				        	JOptionPane.showMessageDialog(textPane, "Konnte keinen Standardbrowser öffnen.");
+				        	JOptionPane.showMessageDialog(textPane, "Konnte keinen Standardbrowser Ã¶ffnen.");
 				        }
 				    }  else {
-			        	JOptionPane.showMessageDialog(textPane, "Konnte keinen Standardbrowser öffnen.");
+			        	JOptionPane.showMessageDialog(textPane, "Konnte keinen Standardbrowser Ã¶ffnen.");
 				    }
 				}
 			}
@@ -173,7 +173,7 @@ public class QuestionViewPane extends JScrollPane {
 
 	/**
 	 * saves the answers returns an integer to know which button was pressed
-	 * 
+	 *
 	 * @param data
 	 *            data which should be stored an consist the info about which
 	 *            button was pressed
