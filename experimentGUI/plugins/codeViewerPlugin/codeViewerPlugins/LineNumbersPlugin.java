@@ -2,7 +2,6 @@ package experimentGUI.plugins.codeViewerPlugin.codeViewerPlugins;
 
 import experimentGUI.plugins.codeViewerPlugin.CodeViewer;
 import experimentGUI.plugins.codeViewerPlugin.CodeViewerPluginInterface;
-import experimentGUI.plugins.codeViewerPlugin.Recorder;
 import experimentGUI.plugins.codeViewerPlugin.tabbedPane.EditorPanel;
 import experimentGUI.util.questionTreeNode.QuestionTreeNode;
 import experimentGUI.util.settingsComponents.SettingsComponentDescription;
@@ -11,7 +10,7 @@ import experimentGUI.util.settingsComponents.components.SettingsCheckBox;
 public class LineNumbersPlugin implements CodeViewerPluginInterface {
 	public static final String KEY = "linenumbers";
 	private QuestionTreeNode selected;
-	
+
 	@Override
 	public SettingsComponentDescription getSettingsComponentDescription() {
 		SettingsComponentDescription result = new SettingsComponentDescription(SettingsCheckBox.class,"linenumbers_default", "Zeilennummern anzeigen");
@@ -41,6 +40,6 @@ public class LineNumbersPlugin implements CodeViewerPluginInterface {
 	@Override
 	public void onEditorPanelClose(EditorPanel editorPanel) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

@@ -12,9 +12,9 @@ import experimentGUI.util.questionTreeNode.QuestionTreeNode;
 /**
  * Creates a panel which consits JList's. The Lists represents categories and
  * every item in the list represents a question
- * 
- * @author Markus Köppen, Andreas Hasselberg
- * 
+ *
+ * @author Markus KÃ¶ppen, Andreas Hasselberg
+ *
  */
 public class QuestionList extends JScrollPane {
 	private static final long serialVersionUID = 1L;
@@ -46,7 +46,7 @@ public class QuestionList extends JScrollPane {
 	// }
 
 	public void visit(QuestionTreeNode selectionNode) {
-		Enumeration e = root.breadthFirstEnumeration();
+		Enumeration<?> e = root.breadthFirstEnumeration();
 		while(e.hasMoreElements()) {
 			DefaultMutableTreeNode node = (DefaultMutableTreeNode)e.nextElement();
 			if(node.equals(selectionNode)) {

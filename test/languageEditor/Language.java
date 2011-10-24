@@ -7,9 +7,9 @@ import java.util.TreeMap;
  * this class can load language specifications from xml files you can set the
  * language and get - per method your desired notes which correspond to a
  * keyword
- * 
- * @author Markus Köppen, Andreas Hasselberg
- * 
+ *
+ * @author Markus KÃ¶ppen, Andreas Hasselberg
+ *
  */
 public class Language {
 
@@ -18,11 +18,13 @@ public class Language {
 	private TreeMap<String, TreeMap<String, String>> localKeywords;
 	//contains the current chose language
 	private static String currentLanguage;
+	@SuppressWarnings("unused")
 	private String currentLocalLanguage;
 	//fallback language
 	private static String fallbackLanguage;
+	@SuppressWarnings("unused")
 	private String localFallbackLanguage;
-	
+
 	private static final String ERROR_MSG = "not found";
 
 	/**
@@ -35,11 +37,11 @@ public class Language {
 	public static final String ELEMENT_KEY_LAN = "languageInterpretation";
 	public static final String ATTRIBUTE_LANGUAGE = "language";
 	public static final String ATTRIBUTE_INTERPRETATION = "interpretation";
-	
+
 	public Language() {
 		localKeywords = new TreeMap<String, TreeMap<String, String>>();
 	}
-	
+
 	public String put(String language, String key, String value) {
 		if(localKeywords.containsKey(language)) {
 			return localKeywords.get(language).put(key, value);
@@ -50,7 +52,7 @@ public class Language {
 			return value;
 		}
 	}
-	
+
 	public String getValue(String language, String key) {
 		if(localKeywords.containsKey(language)) {
 			return localKeywords.get(language).get(key);
@@ -58,20 +60,20 @@ public class Language {
 			return null;
 		}
 	}
-	
+
 	public void setLocalLanguage(String language) {
 		currentLocalLanguage = language;
 	}
-	
+
 	public void setLocalFallbackLanguage(String language) {
 		localFallbackLanguage = language;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * initialize the data with the content of an xml file
-	 * 
+	 *
 	 * @param path
 	 *            path of the xml file
 	 */
@@ -83,7 +85,7 @@ public class Language {
 
 	/**
 	 * sets the language
-	 * 
+	 *
 	 * @param language
 	 *            name of the language
 	 * @return true if applying was successful
@@ -100,7 +102,7 @@ public class Language {
 
 	/**
 	 * returns the String representation of the currently used language
-	 * 
+	 *
 	 * @return current used language
 	 */
 	public static String getLanguage() {
@@ -109,7 +111,7 @@ public class Language {
 
 	/**
 	 * returns the note to a specific keyword in the current language
-	 * 
+	 *
 	 * @param key
 	 *            keyword to the corresponding note
 	 * @return note to the corresponding keyword (or null if not found)

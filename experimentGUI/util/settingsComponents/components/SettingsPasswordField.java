@@ -6,8 +6,6 @@ import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
@@ -15,11 +13,11 @@ import experimentGUI.util.settingsComponents.SettingsComponent;
 
 
 @SuppressWarnings("serial")
-public class SettingsPasswordField extends SettingsComponent{	
+public class SettingsPasswordField extends SettingsComponent{
 	private JLabel caption;
 	private JTextField textField;
 	private final static byte XOR_KEY = 77;
-	
+
 	private static byte[] xor(byte[] input) {
 		byte[] result = new byte[input.length];
 		for (int i = 0; i < input.length; i++) {
@@ -39,7 +37,7 @@ public class SettingsPasswordField extends SettingsComponent{
 			return null;
 		}
 	}
-	
+
 	public SettingsPasswordField() {
 		setLayout(new BorderLayout());
 		caption = new JLabel();
@@ -61,10 +59,10 @@ public class SettingsPasswordField extends SettingsComponent{
 //			@Override
 //			public void removeUpdate(DocumentEvent arg0) {
 //				saveValue();
-//			}			
+//			}
 //		});
 	}
-	
+
 	public void setCaption(String cap) {
 		caption.setText(cap);
 	}

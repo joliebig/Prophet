@@ -6,11 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 
 import javax.swing.JColorChooser;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
@@ -28,7 +25,6 @@ import org.xml.sax.SAXException;
 
 import experimentGUI.plugins.codeViewerPlugin.CodeViewer;
 import experimentGUI.plugins.codeViewerPlugin.CodeViewerPluginInterface;
-import experimentGUI.plugins.codeViewerPlugin.Recorder;
 import experimentGUI.plugins.codeViewerPlugin.codeViewerPlugins.showCIDECodePlugin.Triple;
 import experimentGUI.plugins.codeViewerPlugin.tabbedPane.EditorPanel;
 import experimentGUI.util.questionTreeNode.QuestionTreeNode;
@@ -58,7 +54,7 @@ public class ShowCIDECodePlugin implements CodeViewerPluginInterface{
 	String whitespaces;
 	int addToOffset = 0;
 	String path;
-	
+
 	private boolean enabled;
 
 	@Override
@@ -70,7 +66,7 @@ public class ShowCIDECodePlugin implements CodeViewerPluginInterface{
 
 	@Override
 	public void init(QuestionTreeNode selected) {
-		enabled = Boolean.parseBoolean(selected.getAttributeValue(KEY));	
+		enabled = Boolean.parseBoolean(selected.getAttributeValue(KEY));
 		if(enabled) {
 			try {
 				QuestionTreeNode attributes = selected.getAttribute(KEY);
@@ -86,14 +82,15 @@ public class ShowCIDECodePlugin implements CodeViewerPluginInterface{
 	@Override
 	public void onFrameCreate(CodeViewer viewer) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onEditorPanelCreate(EditorPanel editorPanel) {
 		if(enabled) {
+			@SuppressWarnings("unused")
 			Color myColor = JColorChooser.showDialog(editorPanel, "bla", Color.WHITE);
-			
+
 			RSyntaxTextAreaHighlighter hilit = new RSyntaxTextAreaHighlighter();
 			DefaultHighlightPainter painterYellow = new DefaultHighlighter.DefaultHighlightPainter(Color.RED);
 			editorPanel.getTextArea().setHighlighter(hilit);
@@ -123,16 +120,16 @@ public class ShowCIDECodePlugin implements CodeViewerPluginInterface{
 	@Override
 	public void onEditorPanelClose(EditorPanel editorPanel) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	@Override
 	public void onClose() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
+
+
 	private String createWhitespaceString(int length) {
 		String ret = "";
 		for(int i=0; i<length; i++) {
@@ -140,29 +137,6 @@ public class ShowCIDECodePlugin implements CodeViewerPluginInterface{
 		}
 		return ret + "| ";
 	}
-	
-	private void createColorMenu(int x, int y) {
-		//Get Features
-		Iterator<ArrayList<Triple<Integer, Integer, ArrayList<String>>>> colorInfosIterator = coloringInfos.values().iterator();
-		HashSet<String> features = new HashSet<String>();
-		while(colorInfosIterator.hasNext()) {
-			for(Triple<Integer, Integer, ArrayList<String>> fragmentInfos : colorInfosIterator.next()) {
-				for(String featureName : fragmentInfos.getValue2()) {
-					features.add(featureName);
-				}
-			}
-		}
-		
-		
-		JFrame colorFrame = new JFrame("Farbauswahl");
-		JPanel contentPane = new JPanel();
-		colorFrame.getContentPane().add(contentPane);
-		colorFrame.setLocation(x, y);		
-	}
-	
-	
-	
-
 
 	// //////////////////
 	private void addWhitespaces(String whitespaces, RSyntaxTextArea textArea) {
@@ -221,17 +195,17 @@ public class ShowCIDECodePlugin implements CodeViewerPluginInterface{
 	}
 
 	// ///////////////////
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
 
 
 	private HashMap<String, ArrayList<Triple<Integer, Integer, ArrayList<String>>>> loadXMLTree(String path)
@@ -310,7 +284,7 @@ public class ShowCIDECodePlugin implements CodeViewerPluginInterface{
 			}
 		}
 	}
-	
+
 //	private class myComboBoxModel
 
 }

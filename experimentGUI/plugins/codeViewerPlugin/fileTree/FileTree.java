@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Vector;
 
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -19,7 +18,7 @@ import javax.swing.tree.TreeSelectionModel;
 
 /**
  * Display a file system in a JTree view
- * 
+ *
  * @author Andreas Hasselberg, Markus Koeppen
  */
 @SuppressWarnings("serial")
@@ -27,7 +26,7 @@ public class FileTree extends JScrollPane {
 	private JTree tree;
 	private File rootDir;
 	private Vector<FileListener> fileListeners;
-	
+
 	private FileTreeNode root;
 
 	public FileTree(File dir) {
@@ -78,9 +77,9 @@ public class FileTree extends JScrollPane {
 		FileEvent event = new FileEvent(this, FileEvent.FILE_OPENED, filePath);
 		for (Enumeration<FileListener> e = fileListeners.elements(); e
 				.hasMoreElements();)
-			((FileListener) e.nextElement()).fileEventOccured(event);			
+			((FileListener) e.nextElement()).fileEventOccured(event);
 	}
-	
+
 	public void selectFile(String path) {
 		if(path.startsWith(System.getProperty("file.separator"))) {
 			path = path.substring(System.getProperty("file.separator").length());
@@ -109,7 +108,7 @@ public class FileTree extends JScrollPane {
 			}
 			TreePath selection = new TreePath(treePathList.toArray());
 			tree.expandPath(selection);
-			tree.setSelectionPath(selection);	
+			tree.setSelectionPath(selection);
 		}
 	}
 	public JTree getTree() {

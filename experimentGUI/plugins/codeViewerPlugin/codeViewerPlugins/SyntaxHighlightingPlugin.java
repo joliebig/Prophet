@@ -10,7 +10,6 @@ import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 
 import experimentGUI.plugins.codeViewerPlugin.CodeViewer;
 import experimentGUI.plugins.codeViewerPlugin.CodeViewerPluginInterface;
-import experimentGUI.plugins.codeViewerPlugin.Recorder;
 import experimentGUI.plugins.codeViewerPlugin.tabbedPane.EditorPanel;
 import experimentGUI.util.questionTreeNode.QuestionTreeNode;
 import experimentGUI.util.settingsComponents.SettingsComponentDescription;
@@ -20,7 +19,7 @@ public class SyntaxHighlightingPlugin implements CodeViewerPluginInterface {
 	public final static String KEY = "syntaxhighlighting";
 	private HashMap<String,String> extensionMap;
 	private boolean enabled;
-	
+
 	@Override
 	public SettingsComponentDescription getSettingsComponentDescription() {
 		return new SettingsComponentDescription(SettingsCheckBox.class,KEY, "Syntaxhighlighting einschalten");
@@ -31,7 +30,7 @@ public class SyntaxHighlightingPlugin implements CodeViewerPluginInterface {
 		enabled = Boolean.parseBoolean(selected.getAttributeValue(KEY));
 		if (enabled) {
 			extensionMap = new HashMap<String,String>();
-			
+
 			extensionMap.put("makefile", SyntaxConstants.SYNTAX_STYLE_MAKEFILE);
 			extensionMap.put(".asm", SyntaxConstants.SYNTAX_STYLE_ASSEMBLER_X86);
 			extensionMap.put(".bat", SyntaxConstants.SYNTAX_STYLE_WINDOWS_BATCH);
@@ -56,7 +55,7 @@ public class SyntaxHighlightingPlugin implements CodeViewerPluginInterface {
 	}
 
 	@Override
-	public void onFrameCreate(CodeViewer viewer) {		
+	public void onFrameCreate(CodeViewer viewer) {
 	}
 
 	@Override
@@ -69,13 +68,13 @@ public class SyntaxHighlightingPlugin implements CodeViewerPluginInterface {
 				mimeType = SyntaxConstants.SYNTAX_STYLE_NONE;
 			}
 			Document doc = editorPanel.getTextArea().getDocument();
-			
+
 			DocumentListener[] listeners = removeDocumentListener((RSyntaxDocument)doc);
 			editorPanel.getTextArea().setSyntaxEditingStyle(mimeType);
 			readdDocumentListeners((RSyntaxDocument)doc,listeners);
 		}
 	}
-	
+
 	private DocumentListener[] removeDocumentListener(RSyntaxDocument doc) {
 		DocumentListener[] listeners = doc.getDocumentListeners();
 		for (DocumentListener listener : listeners) {
@@ -96,6 +95,6 @@ public class SyntaxHighlightingPlugin implements CodeViewerPluginInterface {
 	@Override
 	public void onEditorPanelClose(EditorPanel editorPanel) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

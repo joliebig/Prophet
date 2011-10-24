@@ -11,10 +11,7 @@ import org.fife.ui.rsyntaxtextarea.RSyntaxDocument;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
-import experimentGUI.plugins.codeViewerPlugin.CodeViewerPluginList;
-import experimentGUI.plugins.codeViewerPlugin.Recorder;
 import experimentGUI.util.ModifiedRSyntaxTextArea;
-import experimentGUI.util.questionTreeNode.QuestionTreeNode;
 
 
 @SuppressWarnings("serial")
@@ -40,14 +37,14 @@ public class EditorPanel extends JPanel {
 		textArea = new ModifiedRSyntaxTextArea(doc);
 		textArea.setEditable(false);
 		textArea.setFont(new Font("monospaced", Font.PLAIN, 12));
-		scrollPane = new RTextScrollPane(textArea);		
-		
+		scrollPane = new RTextScrollPane(textArea);
+
 		setLayout(new BorderLayout());
 		add(scrollPane, BorderLayout.CENTER);
-	}	
+	}
 	public void grabFocus() {
 		textArea.grabFocus();
-	}	
+	}
 	public RSyntaxTextArea getTextArea() {
 		return textArea;
 	}

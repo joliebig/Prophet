@@ -25,6 +25,7 @@ public class KeyPressedPlugin implements PluginInterface {
 	@Override
 	public void experimentViewerRun(ExperimentViewer experimentViewer) {
 		JPanel contentPanel = experimentViewer.getContentPanel();
+		@SuppressWarnings("serial")
 		Action xAction = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "X pressed!");
@@ -44,7 +45,7 @@ public class KeyPressedPlugin implements PluginInterface {
 	@Override
 	public void enterNode(QuestionTreeNode node) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -56,9 +57,9 @@ public class KeyPressedPlugin implements PluginInterface {
 	@Override
 	public void exitNode(QuestionTreeNode node) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	@Override
 	public String finishExperiment() {
 		// TODO Auto-generated method stub

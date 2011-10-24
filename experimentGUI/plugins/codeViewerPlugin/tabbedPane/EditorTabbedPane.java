@@ -13,6 +13,7 @@ import experimentGUI.util.questionTreeNode.QuestionTreeNode;
 
 @SuppressWarnings("serial")
 public class EditorTabbedPane extends JTabbedPane {
+	@SuppressWarnings("unused")
 	private QuestionTreeNode selected;
 	private File showDir;
 	private Recorder recorder;
@@ -48,7 +49,7 @@ public class EditorTabbedPane extends JTabbedPane {
 			myPanel.grabFocus();
 		} else {
 			JOptionPane.showMessageDialog(this, "Datei " + path
-					+ " konnte nicht automatisch geöffnet werden.", "Fehler", JOptionPane.ERROR_MESSAGE);
+					+ " konnte nicht automatisch geï¿½ffnet werden.", "Fehler", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

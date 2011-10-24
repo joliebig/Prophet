@@ -11,9 +11,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
 import experimentGUI.util.settingsComponents.SettingsComponent;
 
 public class SettingsFilePathChooser  extends SettingsComponent {
@@ -51,7 +48,7 @@ public class SettingsFilePathChooser  extends SettingsComponent {
 		add(pathButton,BorderLayout.EAST);
 		pathButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				File userDir = new File(".");				
+				File userDir = new File(".");
 				JFileChooser fc = new JFileChooser(userDir);
 				fc.setFileSelectionMode(mode);
 				if (fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
@@ -74,14 +71,14 @@ public class SettingsFilePathChooser  extends SettingsComponent {
 					if (selectedPath.startsWith(currentPath)) {
 						selectedPath = selectedPath.substring(currentPath
 								.length() + 1);
-						JOptionPane.showMessageDialog(null, "Bitte beachten Sie:\nDie eben durchgeführte Aktion hat einen Pfad erzeugt, der relativ zum aktuellen Arbeitsverzeichnis steht. Sollte Ihre XML-Datei nicht unmittelbar im aktuellen Arbeitsverzeichnis liegen, müssen Sie den erzeugten Pfad anpassen.");
+						JOptionPane.showMessageDialog(null, "Bitte beachten Sie:\nDie eben durchgefï¿½hrte Aktion hat einen Pfad erzeugt, der relativ zum aktuellen Arbeitsverzeichnis steht. Sollte Ihre XML-Datei nicht unmittelbar im aktuellen Arbeitsverzeichnis liegen, mï¿½ssen Sie den erzeugten Pfad anpassen.");
 					}
-					textField.setText(selectedPath.replace('\\','/'));					
+					textField.setText(selectedPath.replace('\\','/'));
 				}
 			}
 		});
 	}
-	
+
 	public void setMode(int mode) {
 		this.mode = mode;
 	}

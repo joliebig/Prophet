@@ -43,12 +43,16 @@ import javax.swing.event.ListSelectionListener;
 /**
  * This ist a little programm to create/manipulate a xml File, which could be
  * used from language.java
- * 
- * @author Markus Köppen, Andreas Hasselberg
- * 
+ *
+ * @author Markus KÃ¶ppen, Andreas Hasselberg
+ *
  */
 public class LanguageEditor extends JFrame {
 
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 6261884188595827286L;
 	/**
 	 * standard language constant
 	 */
@@ -141,7 +145,7 @@ public class LanguageEditor extends JFrame {
 		removeButton = new JButton("Entfernen");
 
 		listModel = new DefaultListModel();
-		list = new JList();	
+		list = new JList();
 		list.setModel(listModel);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -177,8 +181,8 @@ public class LanguageEditor extends JFrame {
 		panel_2.add(fallbackLanguageButton);
 
 		JPanel keywordPanel = new JPanel();
-		keywordPanel.setLayout(new BorderLayout());	
-		
+		keywordPanel.setLayout(new BorderLayout());
+
 		keywordPanel.add(new JScrollPane(list), BorderLayout.CENTER);
 		JPanel keywordMenuPanel = new JPanel();
 		keywordMenuPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -471,7 +475,7 @@ public class LanguageEditor extends JFrame {
 
 	/**
 	 * gets the next free name for a keyword by appending a "'" if needed
-	 * 
+	 *
 	 * @param name
 	 *            keyword name which is wanted
 	 * @return next free keyword name

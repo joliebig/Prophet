@@ -9,11 +9,11 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 
 @SuppressWarnings("serial")
-public class FileTreeNode extends DefaultMutableTreeNode {	
+public class FileTreeNode extends DefaultMutableTreeNode {
 	private String name;
 	private String path;
 	private boolean isFile;
-	
+
 	public FileTreeNode(File file) throws FileNotFoundException {
 		this(file,"", true);
 	}
@@ -69,6 +69,7 @@ public class FileTreeNode extends DefaultMutableTreeNode {
 		result.isFile=isFile;
 		return result;
 	}
+	@SuppressWarnings("unchecked")
 	public FileTreeNode deepClone() {
 		FileTreeNode result = this.clone();
 		Vector<FileTreeNode> oldChildren = (Vector<FileTreeNode>) children;

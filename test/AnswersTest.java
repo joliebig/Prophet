@@ -23,11 +23,11 @@ public class AnswersTest extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	static JTextPane textPane;
-	
+
 	public static final String[] ATTRIBUTES = {"id", "type", "weight", "answer"};
 	public static final int[] PRIMARY_ATTRIBUTES = {0, 2, 3};
-	
-	
+
+
 	private ArrayList<HashMap<String, String>> elements = new ArrayList<HashMap<String, String>>();
 
 	/**
@@ -69,23 +69,23 @@ public class AnswersTest extends JFrame implements ActionListener {
 		storeAnswerSpecifications(textPane.getText());
 		printAnswerSpecifications();
 	}
-	
-	public void printAnswerSpecifications() {	
-		System.out.println("Antworten: ");	
+
+	public void printAnswerSpecifications() {
+		System.out.println("Antworten: ");
 		for(HashMap<String, String> hm : elements) {
 			for(int i=0; i<ATTRIBUTES.length; i++) {
 				System.out.print(ATTRIBUTES[i] + ":" + hm.get(ATTRIBUTES[i]));
 				System.out.print(" - ");
 			}
 			System.out.println();
-		}		
+		}
 	}
-	
+
 	public void storeAnswerSpecifications(String htmlContent) {
 		//prepare analysis
 		HTMLEditorKit kit = new HTMLEditorKit();
 		HTMLDocument doc = (javax.swing.text.html.HTMLDocument) kit.createDefaultDocument();
-		doc.putProperty("IgnoreCharsetDirective", Boolean.TRUE);		
+		doc.putProperty("IgnoreCharsetDirective", Boolean.TRUE);
 		try {
 			StringReader sr = new StringReader(htmlContent);
 			kit.read(sr, doc, 0);
@@ -93,7 +93,7 @@ public class AnswersTest extends JFrame implements ActionListener {
 			while (tagIterator.isValid()) {
 				//store attributes of the current tag
 				AttributeSet as = tagIterator.getAttributes();
-				Enumeration e = as.getAttributeNames();
+				Enumeration<?> e = as.getAttributeNames();
 				String[] attributesContent = new String[ATTRIBUTES.length];
 				while(e.hasMoreElements()) {
 					Object name = e.nextElement();
@@ -119,13 +119,13 @@ public class AnswersTest extends JFrame implements ActionListener {
 					for(int i=0; i<ATTRIBUTES.length; i++) {
 						hm.put(ATTRIBUTES[i], attributesContent[i]);
 					}
-					elements.add(hm);					
+					elements.add(hm);
 				}
 				tagIterator.next();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 	}
 }
 

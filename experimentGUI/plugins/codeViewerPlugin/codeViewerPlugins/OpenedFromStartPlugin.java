@@ -2,7 +2,6 @@ package experimentGUI.plugins.codeViewerPlugin.codeViewerPlugins;
 
 import experimentGUI.plugins.codeViewerPlugin.CodeViewer;
 import experimentGUI.plugins.codeViewerPlugin.CodeViewerPluginInterface;
-import experimentGUI.plugins.codeViewerPlugin.Recorder;
 import experimentGUI.plugins.codeViewerPlugin.tabbedPane.EditorPanel;
 import experimentGUI.util.questionTreeNode.QuestionTreeNode;
 import experimentGUI.util.settingsComponents.SettingsComponentDescription;
@@ -10,22 +9,22 @@ import experimentGUI.util.settingsComponents.SettingsPluginComponentDescription;
 import experimentGUI.util.settingsComponents.components.SettingsTextField;
 
 public class OpenedFromStartPlugin implements CodeViewerPluginInterface{
-	
+
 	public static final String KEY = "openedByStart";
 	public static final String KEY_PATH = "startPath";
 	private QuestionTreeNode selected;
-	
+
 
 	@Override
 	public SettingsComponentDescription getSettingsComponentDescription() {
-		SettingsPluginComponentDescription result = new SettingsPluginComponentDescription(KEY, "Datei standardmäßig öffnen", true);
-		result.addSubComponent(new SettingsComponentDescription(SettingsTextField.class,KEY_PATH, "Zu öffnende Datei (relativ zum Pfad der Quelltexte):"));
+		SettingsPluginComponentDescription result = new SettingsPluginComponentDescription(KEY, "Datei standardmï¿½ï¿½ig ï¿½ffnen", true);
+		result.addSubComponent(new SettingsComponentDescription(SettingsTextField.class,KEY_PATH, "Zu ï¿½ffnende Datei (relativ zum Pfad der Quelltexte):"));
 		return result;
 	}
 
 	@Override
 	public void init(QuestionTreeNode selected) {
-		this.selected = selected;		
+		this.selected = selected;
 	}
 
 	@Override
@@ -35,25 +34,25 @@ public class OpenedFromStartPlugin implements CodeViewerPluginInterface{
 			String path = attributes.getAttributeValue(KEY_PATH).replace('/', System.getProperty("file.separator").charAt(0));
 			viewer.getTabbedPane().openFile(path);
 			viewer.getFileTree().selectFile(path);
-		}		
+		}
 	}
 
 	@Override
 	public void onEditorPanelCreate(EditorPanel editorPanel) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onEditorPanelClose(EditorPanel editorPanel) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onClose() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

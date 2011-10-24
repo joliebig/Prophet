@@ -1,8 +1,8 @@
 /**
- * this class consist methods which could write an DataTreeNode to an xml file 
+ * this class consist methods which could write an DataTreeNode to an xml file
  * or read an xml file into a DataTreeNode
- * 
- * @author Markus Köppen, Andreas Hasselberg
+ *
+ * @author Markus Kï¿½ppen, Andreas Hasselberg
  */
 
 package experimentGUI.util.questionTreeNode;
@@ -27,7 +27,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import experimentGUI.Constants;
 import experimentGUI.util.Pair;
@@ -43,7 +42,7 @@ public class QuestionTreeXMLHandler {
 
 	/**
 	 * method which adds recursively the childs (to an xml file)
-	 * 
+	 *
 	 * @param treeChilds
 	 *            childs which should bye added
 	 * @param xmlParent
@@ -52,10 +51,10 @@ public class QuestionTreeXMLHandler {
 	 *            the xml-document
 	 */
 	private static void saveXMLNode(Document xmlTree, Element xmlNode, QuestionTreeNode treeNode) {
-		// Name und Value hinzufügen
+		// Name und Value hinzufï¿½gen
 		xmlNode.setAttribute(ATTRIBUTE_NAME, treeNode.getName());
 		xmlNode.setAttribute(ATTRIBUTE_VALUE, treeNode.getValue());
-		// evtl. Attribute hinzufügen
+		// evtl. Attribute hinzufï¿½gen
 		if (treeNode.getAttributes().size() > 0) {
 			Element xmlAttributesNode = xmlTree.createElement(TYPE_ATTRIBUTES);
 			xmlNode.appendChild(xmlAttributesNode);
@@ -66,7 +65,7 @@ public class QuestionTreeXMLHandler {
 				saveXMLNode(xmlTree, xmlChild, treeChild);
 			}
 		}
-		// evtl. Kinder hinzufügen
+		// evtl. Kinder hinzufï¿½gen
 		if (treeNode.getChildCount() > 0) {
 			Element xmlChildrenNode = xmlTree.createElement(TYPE_CHILDREN);
 			xmlNode.appendChild(xmlChildrenNode);
@@ -81,7 +80,7 @@ public class QuestionTreeXMLHandler {
 
 	/**
 	 * writes an DataTreeNode with his children into an XML-File
-	 * 
+	 *
 	 * @param treeRoot
 	 *            DataTreeNode which should be added (with children)
 	 * @param path
@@ -118,7 +117,7 @@ public class QuestionTreeXMLHandler {
 
 	/**
 	 * method which adds recursively the childs (to an xml file)
-	 * 
+	 *
 	 * @param treeChilds
 	 *            childs which should bye added
 	 * @param xmlParent
@@ -127,10 +126,10 @@ public class QuestionTreeXMLHandler {
 	 *            the xml-document
 	 */
 	private static void saveXMLAnswerNode(Document xmlTree, Element xmlNode, QuestionTreeNode treeNode) {
-		// Name hinzufügen
+		// Name hinzufï¿½gen
 		xmlNode.setAttribute(ATTRIBUTE_NAME, treeNode.getName());
 		xmlNode.setAttribute(ATTRIBUTE_TIME, "" + treeNode.getAnswerTime());
-		// evtl. Antworten hinzufügen
+		// evtl. Antworten hinzufï¿½gen
 		if (treeNode.getAnswers().size() > 0) {
 			Element xmlAnswersNode = xmlTree.createElement(TYPE_ANSWERS);
 			xmlNode.appendChild(xmlAnswersNode);
@@ -141,7 +140,7 @@ public class QuestionTreeXMLHandler {
 				xmlAnswersNode.appendChild(xmlChild);
 			}
 		}
-		// evtl. Kinder hinzufügen
+		// evtl. Kinder hinzufï¿½gen
 		if (treeNode.getChildCount() > 0) {
 			Element xmlChildrenNode = xmlTree.createElement(TYPE_CHILDREN);
 			xmlNode.appendChild(xmlChildrenNode);
@@ -156,7 +155,7 @@ public class QuestionTreeXMLHandler {
 
 	/**
 	 * writes an DataTreeNode with his children into an XML-File
-	 * 
+	 *
 	 * @param treeRoot
 	 *            DataTreeNode which should be added (with children)
 	 * @param path
@@ -193,7 +192,7 @@ public class QuestionTreeXMLHandler {
 
 	/**
 	 * method which adds recursively the childs (to a DataTreeNode file)
-	 * 
+	 *
 	 * @param xmlChildren
 	 *            the childs which should be added
 	 * @param treeParent
@@ -210,7 +209,7 @@ public class QuestionTreeXMLHandler {
 		if (xmlValueNode != null) {
 			result.setValue(xmlValueNode.getNodeValue());
 		}
-		// Attribute und Kinder hinzufügen
+		// Attribute und Kinder hinzufï¿½gen
 		NodeList xmlMetaNodes = xmlNode.getChildNodes();
 		for (int i = 0; i < xmlMetaNodes.getLength(); i++) {
 			Node xmlMetaNode = xmlMetaNodes.item(i);
@@ -234,7 +233,7 @@ public class QuestionTreeXMLHandler {
 
 	/**
 	 * loads an xml file an creates an corresponding DataTreeNode
-	 * 
+	 *
 	 * @param path
 	 *            path of the file
 	 * @return root of the new tree-structure
@@ -266,7 +265,7 @@ public class QuestionTreeXMLHandler {
 		if (xmlValueNode != null) {
 			result.setValue(xmlValueNode.getNodeValue());
 		}
-		// Attribute hinzufügen
+		// Attribute hinzufï¿½gen
 		NamedNodeMap xmlAttributeMap = xmlNode.getAttributes();
 		for (int i = 0; i < xmlAttributeMap.getLength(); i++) {
 			Node xmlAttribute = xmlAttributeMap.item(i);
@@ -275,7 +274,7 @@ public class QuestionTreeXMLHandler {
 			attributeNode.setValue(xmlAttribute.getNodeValue());
 			result.setAttribute(xmlAttribute.getNodeName(), attributeNode);
 		}
-		// Answers und Kinder hinzufügen
+		// Answers und Kinder hinzufï¿½gen
 		NodeList xmlMetaNodes = xmlNode.getChildNodes();
 		for (int i = 0; i < xmlMetaNodes.getLength(); i++) {
 			Node xmlMetaNode = xmlMetaNodes.item(i);
@@ -311,13 +310,13 @@ public class QuestionTreeXMLHandler {
 			return loadAnswerXMLNode(xmlRoot);
 		} catch (Exception e) {
 			return null;
-		} 
+		}
 	}
 
 	/**
-	 * 
+	 *
 	 * @param formInfos
-	 *            Liste(Knotenname, Liste(Formname, Formvalue)) --> enthält alle
+	 *            Liste(Knotenname, Liste(Formname, Formvalue)) --> enthï¿½lt alle
 	 *            formularknoten
 	 * @param answerNodes
 	 *            Alle root Knoten aus den answer-xml Dateien (1 pro datei)
