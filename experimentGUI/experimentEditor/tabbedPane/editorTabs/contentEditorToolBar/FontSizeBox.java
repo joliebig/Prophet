@@ -13,7 +13,7 @@ import experimentGUI.util.Pair;
 /**
  * Box for the ContentEditorToolBar, adding HTML tags to change font sizes
  * @author Andreas Hasselberg
- * @author Markus K�ppen
+ * @author Markus Köppen
  *
  */
 @SuppressWarnings("serial")

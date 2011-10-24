@@ -1,8 +1,8 @@
 /**
- * this class consist methods which could write an DataTreeNode to an xml file 
+ * this class consist methods which could write an DataTreeNode to an xml file
  * or read an xml file into a DataTreeNode
- * 
- * @author Markus Köppen, Andreas Hasselberg
+ *
+ * @author Markus KÃ¶ppen, Andreas Hasselberg
  */
 
 package experimentGUI.plugins.codeViewerPlugin.recorder.loggingTreeNode;
@@ -29,7 +29,7 @@ public class LoggingTreeXMLHandler {
 
 	/**
 	 * method which adds recursively the childs (to an xml file)
-	 * 
+	 *
 	 * @param treeChilds
 	 *            childs which should bye added
 	 * @param xmlParent
@@ -38,7 +38,7 @@ public class LoggingTreeXMLHandler {
 	 *            the xml-document
 	 */
 	private static void saveXMLNode(Document xmlTree, Element xmlNode, LoggingTreeNode treeNode) {
-		// evtl. Attribute hinzufügen
+		// evtl. Attribute hinzufï¿½gen
 		if (treeNode.getAttributes().size()>0) {
 			for (Entry<String, String> attribute : treeNode.getAttributes().entrySet()) {
 				xmlNode.setAttribute(attribute.getKey(), attribute.getValue());
@@ -54,7 +54,7 @@ public class LoggingTreeXMLHandler {
 
 	/**
 	 * writes an DataTreeNode with his children into an XML-File
-	 * 
+	 *
 	 * @param treeRoot
 	 *            DataTreeNode which should be added (with children)
 	 * @param path
@@ -95,7 +95,7 @@ public class LoggingTreeXMLHandler {
 
 	/**
 	 * method which adds recursively the childs (to a DataTreeNode file)
-	 * 
+	 *
 	 * @param xmlChildren
 	 *            the childs which should be added
 	 * @param treeParent
@@ -104,23 +104,23 @@ public class LoggingTreeXMLHandler {
 	private static LoggingTreeNode loadXMLNode(Node xmlNode) {
 		LoggingTreeNode result = new LoggingTreeNode(xmlNode.getNodeName());
 		NamedNodeMap attributes = xmlNode.getAttributes();
-		//Attribute hinzufügen
+		//Attribute hinzufï¿½gen
 		for (int i=0; i<attributes.getLength();i++) {
-			Node attribute = attributes.item(i);			
+			Node attribute = attributes.item(i);
 			result.setAttribute(attribute.getNodeName(), attribute.getNodeValue());
 		}
-		//Kinder hinzufügen
+		//Kinder hinzufï¿½gen
 		NodeList xmlChildrenList = xmlNode.getChildNodes();
 		for (int i=0; i<xmlChildrenList.getLength();i++) {
 			Node xmlChildNode = xmlChildrenList.item(i);
-			result.add(loadXMLNode(xmlChildNode));					
+			result.add(loadXMLNode(xmlChildNode));
 		}
 		return result;
 	}
 
 	/**
 	 * loads an xml file an creates an corresponding DataTreeNode
-	 * 
+	 *
 	 * @param path
 	 *            path of the file
 	 * @return root of the new tree-structure

@@ -2,8 +2,8 @@ package experimentGUI.util;
 
 /**
  * This class represents a generic data structure version of a pair
- * 
- * @author Markus Köppen, Andreas Hasselberg
+ *
+ * @author Markus KÃ¶ppen, Andreas Hasselberg
  *
  * @param <K> type of the key
  * @param <V> type of the value
@@ -12,7 +12,7 @@ public class Pair<K,V> {
 
 	K key;
 	V value;
-	
+
 	/**
 	 * Constructor which initialize key and value with null
 	 */
@@ -20,7 +20,7 @@ public class Pair<K,V> {
 		key = null;
 		value = null;
 	}
-	
+
 	/**
 	 * Constructor which initialize key and value with specific content
 	 * @param key value of the key
@@ -30,7 +30,7 @@ public class Pair<K,V> {
 		this.key = key;
 		this.value = value;
 	}
-	
+
 	/**
 	 * returns a String representation of the pair
 	 */

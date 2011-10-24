@@ -23,7 +23,7 @@ import experimentGUI.util.searchBar.SearchBar;
 /**
  * The main tab for editing the content of a node within the ExperimentEditor
  * @author Andreas Hasselberg
- * @author Markus Köppen
+ * @author Markus KÃ¶ppen
  *
  */
 @SuppressWarnings("serial")
@@ -44,7 +44,7 @@ public class ContentEditorPanel extends ExperimentEditorTab {
 	 * the currently selected node
 	 */
 	private QuestionTreeNode selected;
-	
+
 	/**
 	 * Constructor
 	 */
@@ -52,7 +52,7 @@ public class ContentEditorPanel extends ExperimentEditorTab {
 		setLayout(new BorderLayout());
 		this.setOpaque(false);
 	}
-	
+
 	/**
 	 * Called by EditorTabbedPane to indicate a possible node change, (re)loads the panel
 	 */
@@ -65,7 +65,7 @@ public class ContentEditorPanel extends ExperimentEditorTab {
 			if (editPanel==null) {
 				editPanel = new JPanel();
 				editPanel.setLayout(new BorderLayout());
-				
+
 				RSyntaxDocument doc = new RSyntaxDocument(SyntaxConstants.SYNTAX_STYLE_HTML);
 				try {
 					doc.insertString(0, s.getValue(), null);
@@ -74,8 +74,8 @@ public class ContentEditorPanel extends ExperimentEditorTab {
 				}
 				final RSyntaxTextArea editArea = new ModifiedRSyntaxTextArea(doc);
 				editAreas.put(s, editArea);
-				
-				editArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_HTML);		
+
+				editArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_HTML);
 				editArea.addKeyListener(new KeyAdapter() {
 					public void keyPressed(KeyEvent ke) {
 						if (ke.isShiftDown() && ke.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -83,8 +83,8 @@ public class ContentEditorPanel extends ExperimentEditorTab {
 						}
 					}
 				});
-				
-				ContentEditorToolBar toolBar = new ContentEditorToolBar(editArea);		
+
+				ContentEditorToolBar toolBar = new ContentEditorToolBar(editArea);
 				editPanel.add(toolBar, BorderLayout.NORTH);
 				RTextScrollPane scrollPane = new RTextScrollPane(editArea);
 				editArea.setLineWrap(true);
@@ -92,8 +92,8 @@ public class ContentEditorPanel extends ExperimentEditorTab {
 				SearchBar searchBar = new SearchBar(editArea);
 				searchBar.setVisible(false);
 				searchBars.put(selected, searchBar);
-				
-				editPanel.add(searchBar, BorderLayout.SOUTH);				
+
+				editPanel.add(searchBar, BorderLayout.SOUTH);
 				ExperimentEditorTabbedPane.recursiveSetOpaque(editPanel);
 				editPanels.put(s, editPanel);
 			}
@@ -113,7 +113,7 @@ public class ContentEditorPanel extends ExperimentEditorTab {
 			}
 		}
 	}
-	
+
 	/**
 	 * makes the current search bar visible.
 	 */

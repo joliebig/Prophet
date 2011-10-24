@@ -13,15 +13,15 @@ import experimentGUI.util.Pair;
 /**
  * Box for the ContentEditorToolBar, adding HTML tags to change font styles
  * @author Andreas Hasselberg
- * @author Markus Köppen
+ * @author Markus KÃ¶ppen
  *
  */
 @SuppressWarnings("serial")
 public class FontStyleBox extends JComboBox implements ActionListener{
-	
+
 	private RSyntaxTextArea editArea;
 	private ArrayList<Pair<String, String>> fontStyles;
-	
+
 	public FontStyleBox(RSyntaxTextArea editArea) {
 		super();
 		this.editArea = editArea;
@@ -29,14 +29,14 @@ public class FontStyleBox extends JComboBox implements ActionListener{
 		fontStyles.add(new Pair<String, String>("Fett", "b"));
 		fontStyles.add(new Pair<String, String>("Kursiv", "i"));
 		fontStyles.add(new Pair<String, String>("Unterstrichen", "u"));
-		
+
 		this.addItem("Schrifttyp");
 		for(int i=0; i<fontStyles.size(); i++) {
 			this.addItem(fontStyles.get(i).getKey());
 		}
 		this.addActionListener(this);
 	}
-	
+
 	public void actionPerformed(ActionEvent ae) {
 		if (this.getSelectedIndex() != 0) {
 			String tag = fontStyles.get(this.getSelectedIndex()-1).getValue();
@@ -44,7 +44,7 @@ public class FontStyleBox extends JComboBox implements ActionListener{
 			text = text==null ? "" : text;
 			editArea.replaceSelection("<"+tag+">"+text+"</"+tag+">");
 			this.setSelectedIndex(0);
-		}		
+		}
 	}
 
 }

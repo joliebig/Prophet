@@ -9,7 +9,7 @@ import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 /**
  * Toolbar for the ContentEditorPanel
  * @author Andreas Hasselberg
- * @author Markus Köppen
+ * @author Markus KÃ¶ppen
  *
  */
 @SuppressWarnings("serial")
@@ -18,7 +18,7 @@ public class ContentEditorToolBar extends JToolBar {
 	 * The editor area it is working with
 	 */
 	private RSyntaxTextArea editArea;
-	
+
 	/**
 	 * Constructor
 	 * @param ea

@@ -2,8 +2,8 @@ package test;
 
 /**
  * This class represents a generic data structure version of a pair
- * 
- * @author Markus Köppen, Andreas Hasselberg
+ *
+ * @author Markus KÃ¶ppen, Andreas Hasselberg
  *
  * @param <K> type of the key
  * @param <V> type of the value
@@ -13,7 +13,7 @@ public class Triple<K,V1,V2> {
 	K key;
 	V1 value1;
 	V2 value2;
-	
+
 	/**
 	 * Constructor which initialize key and value with null
 	 */
@@ -22,7 +22,7 @@ public class Triple<K,V1,V2> {
 		value1 = null;
 		value2 = null;
 	}
-	
+
 	/**
 	 * Constructor which initialize key and value with specific content
 	 * @param key value of the key
@@ -33,7 +33,7 @@ public class Triple<K,V1,V2> {
 		this.value1 = value1;
 		this.value2 = value2;
 	}
-	
+
 	/**
 	 * returns a String representation of the pair
 	 */

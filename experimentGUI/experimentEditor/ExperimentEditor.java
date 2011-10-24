@@ -18,21 +18,21 @@ import experimentGUI.util.questionTreeNode.QuestionTreeNodeListener;
 /**
  * An ExperimentEditor is a frame which allows its user to create and edit experiments usable in the ExperimentViewer
  * @author Andreas Hasselberg
- * @author Markus Köppen
+ * @author Markus KÃ¶ppen
  */
 public class ExperimentEditor extends JFrame {
 	/**
 	 * The window title for the main frame
 	 */
 	public static final String TITLE = "ExperimentEditor";
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * JTree component on the left side of the ExperimentEditor
 	 */
 	private QuestionTree tree;
-	
+
 	/**
 	 * JTabbedPane component on the right side of the ExperimentEditor
 	 */
@@ -40,7 +40,7 @@ public class ExperimentEditor extends JFrame {
 
 	/**
 	 * Main method to launch the ExperimentEditor
-	 * 
+	 *
 	 * @param args
 	 *  not used
 	 */
@@ -63,7 +63,7 @@ public class ExperimentEditor extends JFrame {
 	 * Constructor of the ExperimentEditor, called by the main() method;<br>
 	 * sets some basic settings and adds used components
 	 */
-	public ExperimentEditor() {		
+	public ExperimentEditor() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800, 600);
 		setLayout(new BorderLayout());
@@ -72,7 +72,7 @@ public class ExperimentEditor extends JFrame {
 
 		JSplitPane splitPane = new JSplitPane();
 		add(splitPane);
-		
+
 		ExperimentEditorMenuBar menuBar = new ExperimentEditorMenuBar(this);
 		setJMenuBar(menuBar);
 
@@ -81,39 +81,39 @@ public class ExperimentEditor extends JFrame {
 		tree.addQuestionTreeNodeListener(new QuestionTreeNodeListener() {
 			public void questionTreeEventOccured(QuestionTreeNodeEvent e) {
 				questionEditorTabbedPane.setSelected(e.getNode());
-			}			
-		});		
+			}
+		});
 		tree.setBorder(null);
 		splitPane.setLeftComponent(tree);
 
 		questionEditorTabbedPane = new ExperimentEditorTabbedPane();
 		questionEditorTabbedPane.setBorder(null);
 		splitPane.setRightComponent(questionEditorTabbedPane);
-		
+
 		splitPane.setBorder(null);
 		for (Component component : splitPane.getComponents())
 			if (component instanceof BasicSplitPaneDivider)
 				((BasicSplitPaneDivider) component).setBorder(null);
-		
+
 		add(splitPane, BorderLayout.CENTER);
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return
 	 * 	The JTree that represents the question tree
 	 */
 	public QuestionTree getTreeComponent() {
 		return tree;
 	}
-	
+
 	/**
 	 * Tells the QuestionTree to create a new tree, called when the "New" item is selected in main menu
 	 */
 	public void newTree() {
 		tree.newRoot();
 	}
-	
+
 	/**
 	 * Loads a question tree into the JTree component
 	 * @param root
@@ -121,7 +121,7 @@ public class ExperimentEditor extends JFrame {
 	public void loadTree(QuestionTreeNode root) {
 		tree.setRoot(root);
 	}
-	
+
 	/**
 	 * return the ExperimentEditorTabbedPane-object from the ExperimentEditor
 	 * @return questionEditorTabbedPane

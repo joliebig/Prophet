@@ -32,7 +32,7 @@ import experimentGUI.util.questionTreeNode.QuestionTreeNode;
  * This class shows the html files (questions) creates the navigation and
  * navigates everything...
  *
- * @author Markus K�ppen, Andreas Hasselberg
+ * @author Markus Köppen, Andreas Hasselberg
  *
  */
 @SuppressWarnings("serial")

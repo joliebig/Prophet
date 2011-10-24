@@ -7,7 +7,7 @@ import experimentGUI.util.questionTreeNode.QuestionTreeNode;
 /**
  * Abstract class representing an ExperimentEditorTab used by the ExperimentEditorTabbedPane
  * @author Andreas Hasselberg
- * @author Markus Köppen
+ * @author Markus KÃ¶ppen
  *
  */
 @SuppressWarnings("serial")

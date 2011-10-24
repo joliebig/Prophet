@@ -17,9 +17,9 @@ import experimentGUI.util.settingsComponents.SettingsComponentDescription;
 
 /**
  * Class to store active plugins, allows calls to all plugins within one line of code.
- * 
+ *
  * @author Andreas Hasselberg
- * @author Markus Köppen
+ * @author Markus KÃ¶ppen
  *
  */
 public class PluginList {
@@ -42,14 +42,14 @@ public class PluginList {
 		}
 	};
 	/**
-	 * 
+	 *
 	 * @return
 	 * 	Vector describing all active plugins
 	 */
 	public static Vector<PluginInterface> getPlugins() {
 		return plugins;
 	}
-	
+
 	/**
 	 * Adds and activates a plugin
 	 * @param plugin
@@ -58,7 +58,7 @@ public class PluginList {
 	public static void add(PluginInterface plugin) {
 		plugins.add(plugin);
 	}
-	
+
 	/**
 	 * Removes and deactives a plugin
 	 * @param plugin
@@ -110,7 +110,7 @@ public class PluginList {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}		
+		}
 	}
 
 	/**

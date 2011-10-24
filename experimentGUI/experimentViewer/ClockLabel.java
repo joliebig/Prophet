@@ -1,8 +1,8 @@
 /**
 
 
- * Diese Klasse repr�sentiert eine Stoppuhr.
- * @author Markus K�ppen, Andreas Hasselberg
+ * Diese Klasse repräsentiert eine Stoppuhr.
+ * @author Markus Köppen, Andreas Hasselberg
  */
 
 package experimentGUI.experimentViewer;
@@ -33,13 +33,13 @@ public class ClockLabel extends JLabel implements Runnable {
 
 	/**
 	 * Konstruktor durch welchen aktuelle Uhrzeit im Label angezeigt wird
-	 * 
+	 *
 	 * @param caption Beschriftung die vor der Uhrzeit stehen soll
 	 */
 	public ClockLabel(String caption) {
 		this(null, caption);
 	}
-	
+
 	/**
 	 * Konstruktor für eine "unsichtbare" Uhr
 	 */
@@ -66,7 +66,7 @@ public class ClockLabel extends JLabel implements Runnable {
 			isRunning = false;
 		}
 	}
-	
+
 	/**
 	 * L�sst die Stoppuhr ihre Arbeit wieder aufnehmen
 	 */
@@ -95,7 +95,7 @@ public class ClockLabel extends JLabel implements Runnable {
 
 	/**
 	 * Methode um Abzufragen ob die Stoppuhr gerade l�uft
-	 * 
+	 *
 	 * @return true wenn die Stoppuhr l�uft, sonst false
 	 */
 	public boolean isActive() {
@@ -136,7 +136,7 @@ public class ClockLabel extends JLabel implements Runnable {
 			}
 		}
 	}
-	
+
 	/**
 	 * Gibt die aktuell gestoppte Zeit zur�ck
 	 * @return Zeit Sekunden
@@ -147,7 +147,7 @@ public class ClockLabel extends JLabel implements Runnable {
 		}
 		return currentTime;
 	}
-	
+
 	private void saveTime() {
 		if (isStarted && questionNode!=null) {
 			questionNode.setAnswerTime(getCurrentTime());

@@ -10,12 +10,12 @@ import java.util.zip.ZipOutputStream;
 
 /**
  * this class contains zip methods
- * 
- * @author Markus Köppen, Andreas Hasselberg
+ *
+ * @author Markus KÃ¶ppen, Andreas Hasselberg
  *
  */
 public class ZipFile {
-	
+
 	private static ZipOutputStream zipOut;
 	private static File outputFile;
 
@@ -59,7 +59,7 @@ public class ZipFile {
 		}
 		zipDir(zipDir,zipDir.getName());
 	}
-	
+
 	/**
 	 * method to zip a directory
 	 * @param zipDir the directory

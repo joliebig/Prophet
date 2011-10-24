@@ -2,7 +2,7 @@
  * this class consist methods which could write an DataTreeNode to an xml file
  * or read an xml file into a DataTreeNode
  *
- * @author Markus K�ppen, Andreas Hasselberg
+ * @author Markus Köppen, Andreas Hasselberg
  */
 
 package experimentGUI.util.questionTreeNode;

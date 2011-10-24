@@ -20,9 +20,9 @@ import javax.mail.internet.MimeMultipart;
 
 /**
  * this class contains a method to send an E-Mail (with attachments)
- * 
+ *
  * @author zeja
- * @author Markus Köppen, Andreas Hasselberg
+ * @author Markus KÃ¶ppen, Andreas Hasselberg
  */
 public class Email {
 
@@ -37,7 +37,7 @@ public class Email {
 
 	/**
 	 * Sends an EMail
-	 * 
+	 *
 	 * @param recipientsAddress
 	 *            adress of the recipient
 	 * @param subject
@@ -84,7 +84,7 @@ public class Email {
 
 	/**
 	 * main method to test the methods
-	 * 
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -102,7 +102,7 @@ public class Email {
 		/**
 		 * Der Konstruktor erzeugt ein MailAuthenticator Objekt<br>
 		 * aus den beiden Parametern user und passwort.
-		 * 
+		 *
 		 * @param user
 		 *            String, der Username fuer den Mailaccount.
 		 * @param password
@@ -115,7 +115,7 @@ public class Email {
 
 		/**
 		 * Diese Methode gibt ein neues PasswortAuthentication Objekt zurueck.
-		 * 
+		 *
 		 * @see javax.mail.Authenticator#getPasswordAuthentication()
 		 */
 		protected PasswordAuthentication getPasswordAuthentication() {

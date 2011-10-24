@@ -19,7 +19,7 @@ import javax.swing.tree.TreeSelectionModel;
 /**
  * Display a file system in a JTree view
  *
- * @author Andreas Hasselberg, Markus Koeppen
+ * @author Andreas Hasselberg, Markus Köppen
  */
 @SuppressWarnings("serial")
 public class FileTree extends JScrollPane {

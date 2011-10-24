@@ -16,7 +16,7 @@ import experimentGUI.util.questionTreeNode.QuestionTreeNode;
 /**
  * A panel for taking notes for every node in the tree.
  * @author Andreas Hasselberg
- * @author Markus Köppen
+ * @author Markus KÃ¶ppen
  *
  */
 @SuppressWarnings("serial")
@@ -43,7 +43,7 @@ public class NoteEditorPanel extends ExperimentEditorTab {
 		this.updateUI();
 		if (s!=null) {
 			RTextScrollPane scrollPane = scrollPanes.get(selected);
-			if (scrollPane==null) {				
+			if (scrollPane==null) {
 				RSyntaxDocument doc = new RSyntaxDocument(SyntaxConstants.SYNTAX_STYLE_NONE);
 				try {
 					doc.insertString(0, s.getAddAttribute(KEY_NOTES).getValue(), null);
@@ -53,7 +53,7 @@ public class NoteEditorPanel extends ExperimentEditorTab {
 				RSyntaxTextArea editArea = new ModifiedRSyntaxTextArea(doc);
 				editAreas.put(s, editArea);
 				editArea.setLineWrap(true);
-				
+
 				scrollPane = new RTextScrollPane(editArea);
 				scrollPanes.put(s, scrollPane);
 			}

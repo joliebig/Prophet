@@ -3,8 +3,8 @@ package experimentGUI.experimentEditor.tabbedPane.editorTabs;
 /**
  * A Dialog to adjust some settings.
  * One is a path an the others are predefined (Settings.java) and could be true oder false
- * 
- * @author Markus K�ppen, Andreas Hasselberg
+ *
+ * @author Markus Köppen, Andreas Hasselberg
  */
 
 import java.awt.BorderLayout;
@@ -36,7 +36,7 @@ public class SettingsEditorPanel extends ExperimentEditorTab {
 	private HashMap<QuestionTreeNode, JScrollPane> scrollPanes = new HashMap<QuestionTreeNode,JScrollPane>();
 	private HashMap<QuestionTreeNode, ArrayList<SettingsComponent>> settingsComponents = new HashMap<QuestionTreeNode, ArrayList<SettingsComponent>>();
 	private QuestionTreeNode selected;
-		
+
 	/**
 	 * Constructor
 	 */
@@ -58,7 +58,7 @@ public class SettingsEditorPanel extends ExperimentEditorTab {
 				JPanel settingsPanel = new JPanel();
 				settingsPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 				settingsPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-				
+
 				if (selected.isExperiment()) {
 					settingsPanel.add(new SettingsComponentDescription(SettingsTextField.class, Constants.KEY_EXPERIMENT_CODE,
 							"Experiment-Code: ").build(selected));
