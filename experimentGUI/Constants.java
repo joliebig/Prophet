@@ -2,10 +2,10 @@ package experimentGUI;
 
 /**
  * Class used to store constants used throughout the code
- *
+ * 
  * @author Andreas Hasselberg
  * @author Markus Köppen
- *
+ * 
  */
 public class Constants {
 	/**
@@ -17,11 +17,13 @@ public class Constants {
 	 */
 	public static final String FILE_ANSWERS = "answers.xml";
 	/**
-	 * property name for categories whose content isn't shown and the first question within is started immediately
+	 * property name for categories whose content isn't shown and the first
+	 * question within is started immediately
 	 */
 	public static final String KEY_DONOTSHOWCONTENT = "donotshowcontent";
 	/**
-	 * property name for categories, determines if subjects may go back to previous questions within that category
+	 * property name for categories, determines if subjects may go back to
+	 * previous questions within that category
 	 */
 	public static final String KEY_QUESTIONSWITCHING = "questionswitching";
 
@@ -30,7 +32,7 @@ public class Constants {
 	 */
 	public static final String KEY_EXPERIMENT_CODE = "experimentcode";
 
-	//constants for names in html-files - DO NOT USE
+	// constants for names in html-files - DO NOT USE
 	/**
 	 * html name for the button to the next question
 	 */
