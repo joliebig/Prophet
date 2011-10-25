@@ -47,16 +47,21 @@ public class QuestionViewPane extends JScrollPane {
 	public static final String HTML_START = "<html><body><form>";
 	public static final String HTML_DIVIDER = "<br /><br /><hr /><br /><br />";
 	public static final String HTML_TYPE_SUBMIT = "submit";
-	public static final String FOOTER_FORWARD = "<input name =\"" + Constants.KEY_FORWARD + "\" type=\""
-			+ HTML_TYPE_SUBMIT + "\" value=\"" + FOOTER_FORWARD_CAPTION + "\" />";
-	public static final String FOOTER_BACKWARD = "<input name =\"" + Constants.KEY_BACKWARD + "\" type=\""
-			+ HTML_TYPE_SUBMIT + "\" value=\"" + FOOTER_BACKWARD_CAPTION + "\" />";
-	public static final String FOOTER_END_CATEGORY = "<input name =\"" + Constants.KEY_FORWARD + "\" type=\""
-			+ HTML_TYPE_SUBMIT + "\" value=\"" + FOOTER_END_CATEGORY_CAPTION + "\" />";
-	public static final String FOOTER_EXPERIMENT_CODE = "<table><tr><td>" + FOOTER_SUBJECT_CODE_CAPTION
-			+ "</td><td><input name=\"" + Constants.KEY_SUBJECT + "\" /></td></tr></table>";
-	public static final String FOOTER_START_EXPERIMENT = FOOTER_EXPERIMENT_CODE + HTML_DIVIDER
-			+ "<input name =\"" + Constants.KEY_FORWARD + "\" type=\"" + HTML_TYPE_SUBMIT + "\" value=\""
+	public static final String FOOTER_FORWARD = "<input name =\""
+			+ Constants.KEY_FORWARD + "\" type=\"" + HTML_TYPE_SUBMIT
+			+ "\" value=\"" + FOOTER_FORWARD_CAPTION + "\" />";
+	public static final String FOOTER_BACKWARD = "<input name =\""
+			+ Constants.KEY_BACKWARD + "\" type=\"" + HTML_TYPE_SUBMIT
+			+ "\" value=\"" + FOOTER_BACKWARD_CAPTION + "\" />";
+	public static final String FOOTER_END_CATEGORY = "<input name =\""
+			+ Constants.KEY_FORWARD + "\" type=\"" + HTML_TYPE_SUBMIT
+			+ "\" value=\"" + FOOTER_END_CATEGORY_CAPTION + "\" />";
+	public static final String FOOTER_EXPERIMENT_CODE = "<table><tr><td>"
+			+ FOOTER_SUBJECT_CODE_CAPTION + "</td><td><input name=\""
+			+ Constants.KEY_SUBJECT + "\" /></td></tr></table>";
+	public static final String FOOTER_START_EXPERIMENT = FOOTER_EXPERIMENT_CODE
+			+ HTML_DIVIDER + "<input name =\"" + Constants.KEY_FORWARD
+			+ "\" type=\"" + HTML_TYPE_SUBMIT + "\" value=\""
 			+ FOOTER_START_EXPERIMENT_CAPTION + "\" />";
 	public static final String HTML_END = "</form></body></html>";
 
@@ -88,9 +93,11 @@ public class QuestionViewPane extends JScrollPane {
 			public ViewFactory getViewFactory() {
 				return new HTMLEditorKit.HTMLFactory() {
 					public View create(Element elem) {
-						Object o = elem.getAttributes().getAttribute(StyleConstants.NameAttribute);
+						Object o = elem.getAttributes().getAttribute(
+								StyleConstants.NameAttribute);
 						if (o instanceof HTML.Tag) {
-							if (o == HTML.Tag.INPUT || o == HTML.Tag.TEXTAREA || o == HTML.Tag.SELECT) {
+							if (o == HTML.Tag.INPUT || o == HTML.Tag.TEXTAREA
+									|| o == HTML.Tag.SELECT) {
 								FormView formView = new FormView(elem) {
 									// What should happen when the buttons are
 									// pressed?
@@ -103,11 +110,17 @@ public class QuestionViewPane extends JScrollPane {
 								};
 
 								if (o == HTML.Tag.INPUT
-										&& elem.getAttributes().getAttribute(HTML.Attribute.NAME) != null
-										&& elem.getAttributes().getAttribute(HTML.Attribute.NAME)
+										&& elem.getAttributes().getAttribute(
+												HTML.Attribute.NAME) != null
+										&& elem.getAttributes()
+												.getAttribute(
+														HTML.Attribute.NAME)
 												.equals(Constants.KEY_FORWARD)
-										&& elem.getAttributes().getAttribute(HTML.Attribute.TYPE) != null
-										&& elem.getAttributes().getAttribute(HTML.Attribute.TYPE)
+										&& elem.getAttributes().getAttribute(
+												HTML.Attribute.TYPE) != null
+										&& elem.getAttributes()
+												.getAttribute(
+														HTML.Attribute.TYPE)
 												.equals(HTML_TYPE_SUBMIT)) {
 									submitButton = formView;
 								}
@@ -124,35 +137,42 @@ public class QuestionViewPane extends JScrollPane {
 			public void hyperlinkUpdate(HyperlinkEvent event) {
 				if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 					Desktop desktop = null;
-				    if (Desktop.isDesktopSupported()) {
-				        desktop = Desktop.getDesktop();
-				        if(desktop.isSupported(Desktop.Action.BROWSE)) {
-				        	try {
+					if (Desktop.isDesktopSupported()) {
+						desktop = Desktop.getDesktop();
+						if (desktop.isSupported(Desktop.Action.BROWSE)) {
+							try {
 								desktop.browse(event.getURL().toURI());
 							} catch (IOException e) {
-					        	JOptionPane.showMessageDialog(textPane, "Fehler beim Starten des Browsers.");
+								JOptionPane.showMessageDialog(textPane,
+										"Fehler beim Starten des Browsers.");
 							} catch (URISyntaxException e) {
-					        	JOptionPane.showMessageDialog(textPane, "Fehlerhafte URL.");
+								JOptionPane.showMessageDialog(textPane,
+										"Fehlerhafte URL.");
 							}
-				        } else {
-				        	JOptionPane.showMessageDialog(textPane, "Konnte keinen Standardbrowser öffnen.");
-				        }
-				    }  else {
-			        	JOptionPane.showMessageDialog(textPane, "Konnte keinen Standardbrowser öffnen.");
-				    }
+						} else {
+							JOptionPane.showMessageDialog(textPane,
+									"Konnte keinen Standardbrowser öffnen.");
+						}
+					} else {
+						JOptionPane.showMessageDialog(textPane,
+								"Konnte keinen Standardbrowser öffnen.");
+					}
 				}
 			}
 
 		});
 
 		URL trueBase = ClassLoader.getSystemResource(".");
-		((javax.swing.text.html.HTMLDocument) textPane.getDocument()).setBase(trueBase);
+		((javax.swing.text.html.HTMLDocument) textPane.getDocument())
+				.setBase(trueBase);
 
-		String questionText = HTML_START + questionNode.getValue() + HTML_DIVIDER;
+		String questionText = HTML_START + questionNode.getValue()
+				+ HTML_DIVIDER;
 		boolean questionSwitching = false;
 		if (questionNode.isQuestion()) {
-			questionSwitching = Boolean.parseBoolean(((QuestionTreeNode) questionNode.getParent())
-					.getAttributeValue("questionswitching"));
+			questionSwitching = Boolean
+					.parseBoolean(((QuestionTreeNode) questionNode.getParent())
+							.getAttributeValue("questionswitching"));
 		}
 		if (hasActivePreviousNode(questionNode) && questionSwitching) {
 			questionText += FOOTER_BACKWARD;
@@ -188,13 +208,16 @@ public class QuestionViewPane extends JScrollPane {
 			String key = null;
 			String value = null;
 			try {
-				key = URLDecoder.decode(token.substring(0, token.indexOf("=")), "ISO-8859-1");
-				value = URLDecoder.decode(token.substring(token.indexOf("=") + 1, token.length()),
+				key = URLDecoder.decode(token.substring(0, token.indexOf("=")),
 						"ISO-8859-1");
+				value = URLDecoder
+						.decode(token.substring(token.indexOf("=") + 1,
+								token.length()), "ISO-8859-1");
 			} catch (UnsupportedEncodingException ex) {
 				ex.printStackTrace();
 			}
-			if (key.equals(Constants.KEY_FORWARD) || key.equals(Constants.KEY_BACKWARD)) {
+			if (key.equals(Constants.KEY_FORWARD)
+					|| key.equals(Constants.KEY_BACKWARD)) {
 				result = key;
 			} else {
 				questionNode.setAnswer(key, value);
@@ -205,7 +228,8 @@ public class QuestionViewPane extends JScrollPane {
 
 	private boolean hasActiveNextNode(QuestionTreeNode node) {
 		if (node.isExperiment() || node.isCategory()) {
-			if (ExperimentViewer.denyEnterNode(node) || node.getChildCount() == 0) {
+			if (ExperimentViewer.denyEnterNode(node)
+					|| node.getChildCount() == 0) {
 				return false;
 			} else {
 				node = (QuestionTreeNode) node.getFirstChild();
@@ -253,7 +277,8 @@ public class QuestionViewPane extends JScrollPane {
 
 	public void fireEvent(String action) {
 		if (actionListener != null && !doNotFire) {
-			ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, action);
+			ActionEvent event = new ActionEvent(this,
+					ActionEvent.ACTION_PERFORMED, action);
 			actionListener.actionPerformed(event);
 		}
 	}
