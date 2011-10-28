@@ -182,11 +182,7 @@ public class EditAndSavePlugin implements CodeViewerPluginInterface {
 		if (editable) {
 			Boolean changed = isChanged.get(editorPanel);
 			if (changed != null && changed.booleanValue()) {
-				int n = JOptionPane.showConfirmDialog(null, "Änderungen speichern?", "Speichern?",
-						JOptionPane.YES_NO_OPTION);
-				if (n == JOptionPane.YES_OPTION) {
-					saveEditorPanel(editorPanel);
-				}
+				saveEditorPanel(editorPanel);
 			}
 			isChanged.remove(editorPanel);
 		}
