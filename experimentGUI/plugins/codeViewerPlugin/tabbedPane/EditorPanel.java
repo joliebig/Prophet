@@ -17,23 +17,19 @@ import experimentGUI.util.ModifiedRSyntaxTextArea;
 @SuppressWarnings("serial")
 public class EditorPanel extends JPanel {
 	private String filePath;
+	private File file;
 	private RTextScrollPane scrollPane;
 	private RSyntaxTextArea textArea;
+	private RSyntaxDocument doc;
 
 	/**
 	 * Create the panel.
 	 */
 	public EditorPanel(File file, String path) {
+		this.file = file;
 		this.filePath=path;
-		RSyntaxDocument doc = new RSyntaxDocument("text/plain");
-		try {
-			byte[] buffer = new byte[(int) file.length()];
-		    FileInputStream fileStream = new FileInputStream(file);
-		    fileStream.read(buffer);
-		    doc.insertString(0, new String(buffer), null);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		doc = new RSyntaxDocument("text/plain");
+		loadFileContent();
 		textArea = new ModifiedRSyntaxTextArea(doc);
 		textArea.setEditable(false);
 		textArea.setFont(new Font("monospaced", Font.PLAIN, 12));
@@ -42,6 +38,18 @@ public class EditorPanel extends JPanel {
 		setLayout(new BorderLayout());
 		add(scrollPane, BorderLayout.CENTER);
 	}
+
+	private void loadFileContent() {
+		try {
+			byte[] buffer = new byte[(int) file.length()];
+		    FileInputStream fileStream = new FileInputStream(file);
+		    fileStream.read(buffer);
+		    doc.insertString(0, new String(buffer), null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void grabFocus() {
 		textArea.grabFocus();
 	}

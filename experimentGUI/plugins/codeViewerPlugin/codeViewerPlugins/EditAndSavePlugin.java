@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -67,7 +66,7 @@ public class EditAndSavePlugin implements CodeViewerPluginInterface {
 					saveAllFiles();
 				}
 			});
-			JMenuItem undo = new JMenuItem("Undo");
+			JMenuItem undo = new JMenuItem("Letzte Änderung rückgängig machen");
 			undo.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.Event.CTRL_MASK | java.awt.Event.SHIFT_MASK));
 			viewer.addMenuItemToEditMenu(undo);
 			undo.addActionListener(new ActionListener() {
