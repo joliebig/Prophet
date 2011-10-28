@@ -94,7 +94,7 @@ public class MailPlugin implements PluginInterface {
 			result.addSubComponent(new SettingsComponentDescription(SettingsTextField.class, SMTP_SENDER,
 					"Absender:"));
 			result.addSubComponent(new SettingsComponentDescription(SettingsTextField.class, SMTP_RECEIVER,
-					"Empf‰nger:"));
+					"Empf√§nger:"));
 			return result;
 		}
 		return null;
@@ -109,7 +109,7 @@ public class MailPlugin implements PluginInterface {
 	public boolean denyEnterNode(QuestionTreeNode node) {
 		return false;
 	}
-	
+
 	@Override
 	public void enterNode(QuestionTreeNode node) {
 		try {
@@ -128,7 +128,7 @@ public class MailPlugin implements PluginInterface {
 
 		}
 	}
-	
+
 	@Override
 	public String denyNextNode(QuestionTreeNode currentNode) {
 		return null;
@@ -161,7 +161,7 @@ public class MailPlugin implements PluginInterface {
 		/**
 		 * Der Konstruktor erzeugt ein MailAuthenticator Objekt<br>
 		 * aus den beiden Parametern user und passwort.
-		 * 
+		 *
 		 * @param user
 		 *            String, der Username fuer den Mailaccount.
 		 * @param password
@@ -174,7 +174,7 @@ public class MailPlugin implements PluginInterface {
 
 		/**
 		 * Diese Methode gibt ein neues PasswortAuthentication Objekt zurueck.
-		 * 
+		 *
 		 * @see javax.mail.Authenticator#getPasswordAuthentication()
 		 */
 		protected PasswordAuthentication getPasswordAuthentication() {
