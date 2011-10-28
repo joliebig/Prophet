@@ -67,6 +67,14 @@ public class EditAndSavePlugin implements CodeViewerPluginInterface {
 					saveAllFiles();
 				}
 			});
+			JMenuItem undo = new JMenuItem("Undo");
+			undo.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.Event.CTRL_MASK | java.awt.Event.SHIFT_MASK));
+			viewer.addMenuItemToEditMenu(undo);
+			undo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					undoChange();
+				}
+			});
 		}
 	}
 
@@ -74,6 +82,14 @@ public class EditAndSavePlugin implements CodeViewerPluginInterface {
 		Component activeComp = tabbedPane.getSelectedComponent();
 		if (activeComp != null && activeComp instanceof EditorPanel) {
 			saveEditorPanel((EditorPanel) activeComp);
+		}
+	}
+
+	private void undoChange() {
+		Component activeComp = tabbedPane.getSelectedComponent();
+		if (activeComp != null && activeComp instanceof EditorPanel) {
+			RSyntaxTextArea textarea = ((EditorPanel)activeComp).getTextArea();
+			textarea.undoLastAction();
 		}
 	}
 
