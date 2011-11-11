@@ -86,11 +86,12 @@ public class SearchBarPlugin implements CodeViewerPluginInterface {
 
 				JSplitPane vsplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 				JPanel currPane = (JPanel)viewer.getContentPane();
-
+				globalSearchBar.setMinimumSize(new Dimension(400, 200));
+				globalSearchBar.setMaximumSize(viewer.getMaximumSize());
+				globalSearchBar.setPreferredSize(viewer.getMaximumSize());
 				vsplit.setTopComponent(currPane);
 				vsplit.setBottomComponent(globalSearchBar);
 				vsplit.setDividerLocation(400);
-				globalSearchBar.setMinimumSize(new Dimension(400, 200));
 				viewer.setContentPane(vsplit);
 
 			}
