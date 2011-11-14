@@ -12,6 +12,7 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
@@ -36,11 +37,12 @@ import experimentGUI.plugins.codeViewerPlugin.fileTree.FileTreeNode;
 
 public class GlobalSearchBar extends JToolBar implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	public static final String CAPTION_FIND = "Find";
+	public static final String CAPTION_FIND = "Suche";
 	public static final String CAPTION_REGEX = "Regex";
 	public static final String CAPTION_MATCH_CASE = "Groß-/Kleinschreibung";
 	public static final String ACTION_NEXT = "Global";
 
+	private JLabel searchLabel = new JLabel("Globale Suche");
     private JTextField searchField = new JTextField(30);
 	private JButton forwardButton = new JButton(CAPTION_FIND);
 	private JCheckBox regexCB = new JCheckBox(CAPTION_REGEX);
@@ -82,6 +84,7 @@ public class GlobalSearchBar extends JToolBar implements ActionListener {
 				}
 			}
 		});
+		northPanel.add(searchLabel);
 		northPanel.add(searchField);
 		forwardButton.setActionCommand(ACTION_NEXT);
 		forwardButton.addActionListener(this);

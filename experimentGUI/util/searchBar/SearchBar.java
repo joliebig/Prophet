@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
@@ -37,6 +38,7 @@ public class SearchBar extends JToolBar implements ActionListener {
 
 	private RSyntaxTextArea textArea;
 
+	private JLabel searchLabel = new JLabel("Lokale Suche");
 	private JTextField searchField = new JTextField(30);
 	private JButton forwardButton = new JButton(CAPTION_NEXT);
 	private JButton backwardButton = new JButton(CAPTION_PREVIOUS);
@@ -72,6 +74,7 @@ public class SearchBar extends JToolBar implements ActionListener {
 				}
 			}
 		});
+		add(searchLabel);
 		add(searchField);
 		forwardButton.setActionCommand(ACTION_NEXT);
 		forwardButton.addActionListener(this);
