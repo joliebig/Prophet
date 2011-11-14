@@ -48,7 +48,7 @@ public class ExperimentEditor extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					String laf = UIManager.getSystemLookAndFeelClassName();
+					String laf = UIManager.getCrossPlatformLookAndFeelClassName();
 					UIManager.setLookAndFeel(laf);
 					ExperimentEditor frame = new ExperimentEditor();
 					frame.setVisible(true);

@@ -71,7 +71,7 @@ public class ExperimentViewer extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					String laf = UIManager.getSystemLookAndFeelClassName();
+					String laf = UIManager.getCrossPlatformLookAndFeelClassName();
 					UIManager.setLookAndFeel(laf);
 					ExperimentViewer frame = new ExperimentViewer();
 					frame.setVisible(true);
