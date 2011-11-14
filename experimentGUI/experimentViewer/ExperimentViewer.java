@@ -71,8 +71,7 @@ public class ExperimentViewer extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					String laf = UIManager.getCrossPlatformLookAndFeelClassName();
-					UIManager.setLookAndFeel(laf);
+					UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 					ExperimentViewer frame = new ExperimentViewer();
 					frame.setVisible(true);
 				} catch (Exception e) {
